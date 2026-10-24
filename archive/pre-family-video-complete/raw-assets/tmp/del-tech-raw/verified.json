@@ -1,0 +1,44 @@
+{
+  "common_target_lufs": -16.8,
+  "auditions": [
+    {
+      "name": "01-cyber-industrial",
+      "source_lufs": -12.32,
+      "source_true_peak": -1.18,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-tech/01-cyber-industrial.mp3",
+      "decoded_duration": 10.0,
+      "sample_rate": 48000,
+      "decoded_samples": 480000,
+      "integrated_lufs": -16.8,
+      "true_peak_dbTP": -5.66,
+      "gain_db": -4.48,
+      "last_100ms_rms_db": -56.58
+    },
+    {
+      "name": "02-dark-breakbeat",
+      "source_lufs": -13.99,
+      "source_true_peak": -0.78,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-tech/02-dark-breakbeat.mp3",
+      "decoded_duration": 10.0,
+      "sample_rate": 48000,
+      "decoded_samples": 480000,
+      "integrated_lufs": -16.8,
+      "true_peak_dbTP": -3.57,
+      "gain_db": -2.81,
+      "last_100ms_rms_db": -90.4
+    },
+    {
+      "name": "03-minimal-digital-pulse",
+      "source_lufs": -15.3,
+      "source_true_peak": -0.7,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-tech/03-minimal-digital-pulse.mp3",
+      "decoded_duration": 10.0,
+      "sample_rate": 48000,
+      "decoded_samples": 480000,
+      "integrated_lufs": -16.8,
+      "true_peak_dbTP": -2.21,
+      "gain_db": -1.5,
+      "last_100ms_rms_db": -88.58
+    }
+  ]
+}

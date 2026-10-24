@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Lightning-fast terminal (real UI)</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #050506; }
+        #root .clip { position: absolute; inset: 0; }
+        .ui { background: #050506; }
+        .cur { position: absolute; left: 0; top: 0; width: 22px; height: 30px; margin: -2px 0 0 -3px; }
+        .tab.hit, .tab-plus.hit { background: rgba(255,255,255,0.16); }
+        .tpane { position: absolute; overflow: hidden; border-right: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .tpane .th { height: 30px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 12px; color: var(--tx-2); border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.025); }
+        .tpane .th .sp { flex: 1; }
+        .tpane .th .live { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+        .tpane .term { padding: 10px 14px; font-size: 12.5px; }
+        .tbody { position: absolute; inset: 0; background: rgba(0,0,0,0.18); }
+      </style>
+
+      <div data-hf-id="hf-zwrt" id="root" data-composition-id="ui" data-width="1920" data-height="1080" data-duration="1.5">
+        <div data-hf-id="hf-tan6" class="stage">
+          <!-- "the lightning-fast": three clicks on +, three agent tabs snap in -->
+          <section data-hf-id="hf-a29s" class="shot clip ui" id="u-a" data-start="0" data-duration="0.683333333"><div data-hf-id="hf-8cjj" class="cam" id="u-cam1"><div data-hf-id="hf-ra43" id="u-w1"></div></div></section>
+          <!-- "terminal": the window splits into live terminals -->
+          <section data-hf-id="hf-rcfn" class="shot clip ui" id="u-b" data-start="0.683333333" data-duration="0.816666667"><div data-hf-id="hf-xh1w" class="cam" id="u-cam2"><div data-hf-id="hf-im88" id="u-w2"></div></div></section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, S = P.STEP, D = window.DEL;
+          const c = (id) => document.getElementById(id);
+          const cam = (tl, sel, cx, cy, s, at) => tl.set(sel, { x: 960 - cx * s, y: 540 - cy * s, scale: s }, at);
+          const CURSOR = `<svg class="cur" viewBox="0 0 22 30"><path d="M2 2v22l6-5.5 4 9 3.5-1.6-4-8.8H19z" fill="#fff" stroke="#000" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+
+          const TABS = [
+            { p: "codex", t: "Fix the flaky upload retry" },
+            { p: "claude", t: "Profile the search worker" },
+            { p: "acp", t: "Match this settings layout" },
+            { t: "zsh · uploader" },
+          ];
+          const OUT = [
+            [`<span class="o">›</span> codex  <span class="d">~/dev/uploader</span>`, ``, `<span class="d">&gt;</span> Fix the flaky upload retry`, `<span class="o">●</span> Read(src/upload.rs)`, `<span class="o">●</span> Update(src/upload.rs)  +6 −2`, `  <span class="d">⎿</span> let delay = BASE * 2u32.pow(attempt);`, `<span class="o">●</span> Bash(cargo test upload)`, `  <span class="d">⎿</span> 14 passed; 0 failed`],
+            [`<span class="o">✻</span> Claude Code  <span class="d">~/dev/search-worker</span>`, ``, `<span class="d">&gt;</span> Profile the search worker`, `<span class="o">●</span> Bash(cargo bench --bench cache)`, `  <span class="d">⎿</span> cache/insert   time: [212 µs]`, `<span class="o">●</span> Update(src/cache.rs)  +31 −12`, `  <span class="d">⎿</span> peak RSS 412 MB → 198 MB`],
+            [`<span class="o">◆</span> Gemini CLI  <span class="d">~/dev/settings</span>`, ``, `<span class="d">&gt;</span> Match this settings layout`, `<span class="o">●</span> ReadFile(src/Settings.tsx)`, `<span class="o">●</span> Edit(src/Settings.tsx)  +18 −9`, `  <span class="d">⎿</span> ✓ built in 812ms`],
+            [`<span class="d">~/dev/uploader</span> <span class="g">❯</span> cargo test --workspace`, `   Compiling del-terminal v0.1.0`, `running 214 tests`, `test pty::resize ... <span class="g">ok</span>`, `test queue::reorder ... <span class="g">ok</span>`, `test search::scrollback ... <span class="g">ok</span>`, `test result: <span class="g">ok</span>. 214 passed`],
+          ];
+
+          // Shot A: one window, four tab bodies; only the active one shows
+          const bodies = OUT.map((lines, i) => `<div class="tbody" id="u-b${i}" style="display:${i === 0 ? "block" : "none"}">${D.terminal(lines, { id: "u-t" + i, style: "font-size:13px;padding:18px 20px" })}</div>`).join("");
+          c("u-w1").innerHTML = D.windowFrame(bodies, { id: "u-win1", tabs: TABS.map((t, i) => Object.assign({}, t, { active: i === 0 })), sessions: D.DEFAULT_SESSIONS }) + CURSOR.replace('class="cur"', 'class="cur" id="u-cur"');
+
+          // Shot B: 4 terminal panes inside the page, positioned per split state
+          const NAMES = ["Codex", "Claude Code", "Gemini CLI", "zsh"];
+          const panes = OUT.map((lines, i) => `<div class="tpane" id="u-p${i}"><div class="th">${TABS[i].p ? D.pmark(TABS[i].p, 14) : `<span class="mono" style="font-size:10px;color:var(--muted)">&gt;_</span>`}<span>${NAMES[i]}</span><span class="sp"></span><span class="live">● live</span></div>${D.terminal(lines, { id: "u-q" + i })}</div>`).join("");
+          c("u-w2").innerHTML = D.windowFrame(`<div class="tbody">${panes}</div>`, { id: "u-win2", tabs: TABS.map((t, i) => Object.assign({}, t, { active: i === 3 })), sessions: D.DEFAULT_SESSIONS });
+
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            // --- Shot A ---
+            cam(tl, "#u-cam1", 436, 232, 2.2, 0);
+            for (let i = 1; i < 4; i++) tl.set(`#u-win1-tabs-${i}`, { display: "none" }, 0);
+            OUT.forEach((lines, i) => lines.forEach((_, k) => tl.set(`#u-t${i}-l${k}`, { opacity: 0 }, 0)));
+            // lines stream in exponential chunks, one pose each
+            const stream = (pre, n, at, steps = 4) => { let t = at; for (let k = 1; k <= steps; k++) { const m = Math.round(n * S.prog(k, steps, 0.55)); for (let j = 0; j < m; j++) tl.set(`#${pre}-l${j}`, { opacity: 1 }, t); t += S.hold(k); } };
+            stream("u-t0", OUT[0].length, 0, 3);
+            // + sits right after the last visible tab: x = 120 + n * 162 (window px), y = 16
+            const plusX = (n) => 120 + n * 162;
+            const curAt = (x, y, at) => tl.set("#u-cur", { x, y }, at);
+            curAt(560, 300, 0);
+            curAt(330, 80, 0.083333333);
+            const clicks = [0.15, 0.3, 0.45];
+            clicks.forEach((t, k) => {
+              const n = k + 1;                       // tabs visible before this click
+              curAt(plusX(n), 16, t);                // lands exactly on +
+              tl.set("#u-win1-tabs .tab-plus", { className: "tab-plus hit" }, t);
+              // effect one pose later: new tab active, its terminal streams
+              const e = t + 0.083333333;
+              tl.set("#u-win1-tabs .tab-plus", { className: "tab-plus" }, e);
+              tl.set(`#u-win1-tabs-${n}`, { display: "flex", className: "tab active" }, e);
+              tl.set(`#u-win1-tabs-${n - 1}`, { className: "tab" }, e);
+              tl.set(`#u-b${n - 1}`, { display: "none" }, e);
+              tl.set(`#u-b${n}`, { display: "block" }, e);
+              stream(`u-t${n}`, OUT[n].length, e, 2);
+              // cursor hops toward the next + in one exponential step
+              if (k < 2) curAt(plusX(n + 1) - 50, 30, e);
+            });
+            // --- Shot B: 1 -> 2 -> 4 panes (page is 1212 x 856 window px) ---
+            cam(tl, "#u-cam2", 720, 450, 1.2, 0.666666667);
+            const PW = 1212, PH = 856, hw = PW / 2, hh = PH / 2;
+            const lay = (rects, at) => rects.forEach((r, i) => tl.set(`#u-p${i}`, r ? { display: "block", left: r[0], top: r[1], width: r[2], height: r[3] } : { display: "none" }, at));
+            lay([[0, 0, PW, PH], null, null, null], 0.666666667);
+            lay([[0, 0, hw, PH], [hw, 0, hw, PH], null, null], 0.75);
+            lay([[0, 0, hw, hh], [hw, 0, hw, hh], [0, hh, hw, hh], [hw, hh, hw, hh]], 0.833333333);
+            OUT.forEach((lines, i) => lines.forEach((_, k) => tl.set(`#u-q${i}-l${k}`, { opacity: 0 }, 0.666666667)));
+            stream("u-q0", OUT[0].length, 0.666666667, 3);
+            stream("u-q1", OUT[1].length, 0.75, 3);
+            stream("u-q2", OUT[2].length, 0.833333333, 3);
+            stream("u-q3", OUT[3].length, 0.833333333, 4);
+            // Quantize each instant state to the film-wide 5/4 hold grid.
+            const poseFrame=f=>Math.round(f/9)*9+(f%9>=4&&f%9<=7?5:0);
+            tl.getChildren(false,true,false).forEach(ch=>{if(ch.duration()!==0)return;const f=Math.round((5.1+ch.startTime())*60);const c=Math.floor(f/9)*9;const candidates=[c,c+5,c+9];const q=candidates.reduce((a,b)=>Math.abs(b-f)<Math.abs(a-f)?b:a);ch.startTime(Math.max(0,q/60-5.1));});
+            window.__timelines["ui"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

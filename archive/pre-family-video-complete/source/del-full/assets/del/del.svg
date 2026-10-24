@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Del</title>
+  <defs>
+    <linearGradient id="graphite" x1="140" y1="64" x2="830" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65686c"/><stop offset=".36" stop-color="#303236"/><stop offset=".72" stop-color="#17181b"/><stop offset="1" stop-color="#090a0c"/>
+    </linearGradient>
+    <radialGradient id="light" cx=".18" cy="0" r=".95">
+      <stop stop-color="#fff" stop-opacity=".14"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="200" y1="70" x2="800" y2="950" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".5"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity=".17"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="320" y1="270" x2="680" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fafbfc"/><stop offset=".25" stop-color="#d5d9df"/><stop offset=".49" stop-color="#9fa6b0"/><stop offset=".51" stop-color="#7c848f"/><stop offset=".78" stop-color="#c2c9d1"/><stop offset="1" stop-color="#eff2f5"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="330" y1="280" x2="655" y2="755" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/><stop offset=".4" stop-color="#fff" stop-opacity=".7"/><stop offset=".65" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".6"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-25%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="22" stdDeviation="17" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+    <!-- Three cut-glass strokes: a spine and two crossing diagonals forming an angular D. -->
+    <g id="d">
+      <path d="M300 230L356 254L356 780L312 804Z"/>
+      <path d="M242 252L302 266L790 598L737 596Z"/>
+      <path d="M262 781L286 728L780 392L755 454Z"/>
+    </g>
+  </defs>
+  <rect x="64" y="64" width="896" height="896" rx="206" fill="url(#graphite)"/>
+  <rect x="64" y="64" width="896" height="896" rx="206" fill="url(#light)"/>
+  <rect x="66" y="66" width="892" height="892" rx="204" fill="none" stroke="url(#rim)" stroke-width="3"/>
+  <use href="#d" fill="url(#glass)" filter="url(#shadow)"/>
+  <use href="#d" fill="none" stroke="url(#edge)" stroke-width="2" stroke-linejoin="miter"/>
+  <path d="M310 250L320 778M268 270L755 589M284 754L762 416" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="3"/>
+</svg>

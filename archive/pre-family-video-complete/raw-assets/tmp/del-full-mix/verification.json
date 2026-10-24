@@ -1,0 +1,17 @@
+{
+  "master": {
+    "input_i": "-15.04",
+    "input_tp": "-4.70",
+    "input_lra": "6.00",
+    "input_thresh": "-25.39",
+    "output_i": "-15.27",
+    "output_tp": "-4.68",
+    "output_lra": "3.30",
+    "output_thresh": "-25.51",
+    "normalization_type": "dynamic",
+    "target_offset": "0.27"
+  },
+  "actions": 41,
+  "voices": 14,
+  "music_duck_db": -8.87
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Act 5 — CTA</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0b0b0d; }
+        #root .clip { position: absolute; inset: 0; }
+        .bigc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #a5-word { font-family: var(--font); font-weight: 600; font-size: 132px; letter-spacing: -0.045em; line-height: 1; color: #f4f6f8; white-space: pre; }
+        #a5-word .g { font-family: var(--mono); font-weight: 500; }
+      </style>
+
+      <div data-hf-id="hf-bhum" id="root" data-composition-id="act5" data-width="1920" data-height="1080" data-duration="5.450000000">
+        <div data-hf-id="hf-tan6" class="stage">
+          <section data-hf-id="hf-ahl1" class="shot clip ink" id="a5-q1" data-start="0.000000000" data-duration="1.133333333"><canvas data-hf-id="hf-timm" class="pix" id="a5-cq1"></canvas><div data-hf-id="hf-98lh" class="tinyc"><span data-hf-id="hf-pfwl" class="typed" id="a5-t1"></span><span data-hf-id="hf-vwq3" class="caret" id="a5-c1"></span></div></section>
+          <section data-hf-id="hf-4qye" class="shot clip ink" id="a5-q2" data-start="1.133333333" data-duration="0.966666667"><canvas data-hf-id="hf-ncwt" class="pix" id="a5-cq2"></canvas><div data-hf-id="hf-8l45" class="bigc"><span data-hf-id="hf-r1nv" class="giantm" style="font-size:300px"><span data-hf-id="hf-te0m" class="typed" id="a5-t2"></span><span data-hf-id="hf-8xss" class="blockcur" id="a5-c2"></span></span></div></section>
+          <!-- end card: "Del" wordmark in type only -->
+          <section data-hf-id="hf-i87s" class="shot clip ink" id="a5-end" data-start="2.100000000" data-duration="3.350000000"><canvas data-hf-id="hf-lfor" class="pix" id="a5-cend"></canvas><div data-hf-id="hf-kd2x" class="bigc"><span data-hf-id="hf-65wd" id="a5-word"></span></div></section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, G = P.G, S = P.STEP, T = window.TYPE;
+          const c = (id) => document.getElementById(id);
+          const calm = (t, ctx, L) => G.noise(ctx, L, t * 0.6, { scale: 0.008, speed: 0.15, gain: 0.45, bias: -0.44, seed: 17, dx: 0.4 });
+          const LQ1 = P.layer(c("a5-cq1"), { w: 480, h: 270 }); LQ1.draw = (t, ctx, L) => { calm(t, ctx, L); const g = ctx.createRadialGradient(240, 135, 30, 240, 135, 230); g.addColorStop(0, "rgba(0,0,0,1)"); g.addColorStop(1, "rgba(0,0,0,0)"); ctx.fillStyle = g; ctx.fillRect(0, 0, 480, 270); };
+          const LQ2 = P.layer(c("a5-cq2"), { w: 480, h: 270 }); LQ2.draw = (t, ctx, L) => calm(t + 1.125, ctx, L);
+          const LE = P.layer(c("a5-cend"), { w: 480, h: 270, tones: 3, palette: [P.INK, P.MID, P.LIGHT] });
+          LE.draw = (t, ctx) => { const g = ctx.createRadialGradient(100, -20, 10, 100, -20, 420); g.addColorStop(0, "rgb(110,110,110)"); g.addColorStop(0.5, "rgb(36,36,36)"); g.addColorStop(1, "rgb(0,0,0)"); ctx.fillStyle = g; ctx.fillRect(0, 0, 480, 270); };
+          const t1 = T.prepare(c("a5-t1"), "what if your tools");
+          const t2 = T.prepare(c("a5-t2"), "kept up?");
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            P.drive(tl, [{ start: 0, dur: 1.125, layer: LQ1 }, { start: 1.125, dur: 0.975, layer: LQ2 }, { start: 2.1, dur: 3.1, layer: LE }], 5.2, 39.675);
+            S.type(tl, t1, 0.08, 6, 0.7);
+            T.blink(tl, "#a5-c1", 0, 1.125, 0.4);
+            S.type(tl, t2, 1.15, 4, 0.6);
+            T.blink(tl, "#a5-c2", 1.125, 2.1, 0.4);
+            // wordmark decodes from glyphs in three hard poses, landing on the voiced "Del."
+            const w = c("a5-word");
+            tl.set(w, { innerHTML: "D" }, 2.1);
+            tl.set(w, { innerHTML: "De" }, 2.1 + 5 / 60);
+            tl.set(w, { innerHTML: "Del" }, 2.1 + 9 / 60);
+            P.STEP.snap(tl, 39.675);
+            window.__timelines["act5"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

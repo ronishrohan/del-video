@@ -1,0 +1,7 @@
+I've usually got an agent working while I'm checking something in a shell. Then I need the session I was just looking at.
+
+Del is a native terminal multiplexer that keeps that work in one window. I move between Claude and my shell. While the agent's busy, I queue the next message. If I need an older chat, Command K gets me back to it.
+
+It's built in Rust with GPUI. I like having a native app for the place I spend most of my day.
+
+I'll leave the agent running. I'm going to check that failing test.

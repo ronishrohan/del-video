@@ -1,0 +1,53 @@
+{
+  "common_lufs": -20.8,
+  "auditions": [
+    {
+      "name": "01-curious-piano",
+      "generated_duration": 10.0,
+      "duration_edit": "trim encoder tail",
+      "source_lufs": -30.42,
+      "source_true_peak": -12.17,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-eureka/01-curious-piano.mp3",
+      "decoded_duration": 10.0,
+      "decoded_samples": 480000,
+      "sample_rate": 48000,
+      "channels": 1,
+      "lufs": -20.79,
+      "true_peak_dBTP": -2.55,
+      "gain_db": 9.62,
+      "tail_rms_db": -42.67
+    },
+    {
+      "name": "02-analog-discovery",
+      "generated_duration": 11.952,
+      "duration_edit": "removed quiet post-aha rest 9.350-11.302s, no tempo change",
+      "source_lufs": -22.81,
+      "source_true_peak": -6.76,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-eureka/02-analog-discovery.mp3",
+      "decoded_duration": 10.0,
+      "decoded_samples": 480000,
+      "sample_rate": 48000,
+      "channels": 1,
+      "lufs": -20.81,
+      "true_peak_dBTP": -4.75,
+      "gain_db": 2.01,
+      "tail_rms_db": -85.69
+    },
+    {
+      "name": "03-piano-synth-invention",
+      "generated_duration": 10.032,
+      "duration_edit": "trim encoder tail",
+      "source_lufs": -22.06,
+      "source_true_peak": -8.08,
+      "path": "/Users/ronish/.ao/data/artifacts/del-video-6/audio-eureka/03-piano-synth-invention.mp3",
+      "decoded_duration": 10.0,
+      "decoded_samples": 480000,
+      "sample_rate": 48000,
+      "channels": 1,
+      "lufs": -20.81,
+      "true_peak_dBTP": -6.82,
+      "gain_db": 1.26,
+      "tail_rms_db": -85.73
+    }
+  ]
+}

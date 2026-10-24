@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Act 1 — Hook</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: transparent; }
+        #root .clip { position: absolute; inset: 0; }
+        #a1-row { display: flex; align-items: center; }
+        #a1-slot { width: 0; height: 120px; position: relative; display: block; flex: none; }
+        .ins { opacity: 0; position: absolute; left: 50%; top: 50%; width: 112px; height: 112px; margin: -56px 0 0 -56px; display: block; image-rendering: pixelated; box-shadow: 0 0 0 1px rgba(217,220,225,0.35); }
+        .bigc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #a1-del { font-family: var(--font); font-weight: 600; font-size: 520px; letter-spacing: -0.055em; line-height: 1; color: #f4f6f8; }
+      </style>
+
+      <div data-hf-id="hf-w7tr" id="root" data-composition-id="act1" data-width="1920" data-height="1080" data-duration="50">
+        <div data-hf-id="hf-tan6" class="stage">
+          <!-- "What if… your terminal": dithered noise, tiny type, inserts snap in between the words -->
+          <section data-hf-id="hf-v7wz" class="shot clip ink" id="a1-s1" data-start="0.000000000" data-duration="1.200000000">
+            <canvas data-hf-id="hf-lm5t" class="pix" id="a1-c1"></canvas>
+            <div data-hf-id="hf-98lh" class="tinyc"><div data-hf-id="hf-iu28" id="a1-row"><span data-hf-id="hf-9uqg" class="typed" id="a1-w1"></span><span data-hf-id="hf-z6m9" id="a1-slot"><canvas data-hf-id="hf-k4w3" class="ins" id="a1-i0"></canvas><canvas data-hf-id="hf-g6s2" class="ins" id="a1-i1"></canvas><canvas data-hf-id="hf-c8o1" class="ins" id="a1-i2"></canvas></span><span data-hf-id="hf-iimb" class="typed" id="a1-w2"></span><span data-hf-id="hf-bv1v" class="caret" id="a1-cur"></span></div></div>
+          </section>
+
+          <!-- "moved as fast": three hard cuts -->
+          <section data-hf-id="hf-dbeg" class="shot clip ink" id="a1-s2a" data-start="26.100000000" data-duration="2.400000000"><canvas data-hf-id="hf-3jmf" class="pix" id="a1-c2a"></canvas></section>
+          <section data-hf-id="hf-tkr6" class="shot clip ink" id="a1-s2b" data-start="11.250000000" data-duration="0.750000000"><canvas data-hf-id="hf-so4s" class="pix" id="a1-c2b"></canvas></section>
+          <section data-hf-id="hf-hlaz" class="shot clip ink" id="a1-s2c" data-start="10.650000000" data-duration="0.600000000"><canvas data-hf-id="hf-tfsl" class="pix" id="a1-c2c"></canvas></section>
+
+          <!-- "as you think": frame-filling "fast" over halftone, freezes with the music stop -->
+          <section data-hf-id="hf-sw8t" class="shot clip ink" id="a1-s3" data-hidden="true" data-start="2.550000000" data-duration="1.500000000">
+            <canvas data-hf-id="hf-tidv" class="pix" id="a1-c3"></canvas>
+            <div data-hf-id="hf-8l45" class="bigc"><span data-hf-id="hf-1io0" class="giantm" style="font-size:420px">fast</span></div>
+          </section>
+
+          <!-- silence: one line -->
+          <section data-hf-id="hf-gqwt" class="shot clip ink" id="a1-s4" data-hidden="true" data-start="4.050000000" data-duration="1.050000000"><canvas data-hf-id="hf-60wc" class="pix" id="a1-c4"></canvas></section>
+
+          <!-- "Del.": wordmark in type only, frame-filling -->
+          <section data-hf-id="hf-a188" class="shot clip ink" id="a1-s5" data-start="12.000000000" data-duration="0.750000000">
+            <canvas data-hf-id="hf-6sk5" class="pix" id="a1-c5"></canvas>
+            <div data-hf-id="hf-kd2x" class="bigc"><span data-hf-id="hf-d98l" id="a1-del">Del</span></div>
+          </section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, G = P.G, S = P.STEP, T = window.TYPE;
+          const c = (id) => document.getElementById(id);
+          const L1 = P.layer(c("a1-c1"), { w: 480, h: 270 });
+          L1.draw = (t, ctx, L) => { G.noise(ctx, L, t, { scale: 0.012, speed: 0.25, gain: 0.7, bias: -0.42, seed: 4 }); const g = ctx.createRadialGradient(240, 135, 20, 240, 135, 190); g.addColorStop(0, "rgba(0,0,0,1)"); g.addColorStop(0.55, "rgba(0,0,0,0.85)"); g.addColorStop(1, "rgba(0,0,0,0)"); ctx.fillStyle = g; ctx.fillRect(0, 0, 480, 270); };
+          const I0 = P.layer(c("a1-i0"), { w: 56, h: 56 }); I0.draw = (t, ctx, L) => G.noise(ctx, L, t, { scale: 0.06, speed: 0.9, gain: 1.1, dx: 0.6, seed: 8 });
+          const I1 = P.layer(c("a1-i1"), { w: 112, h: 112 }); I1.draw = (t, ctx, L) => G.stream(ctx, L, t, { x: 0, y: 0, w: 112, h: 112 }, { size: 8, seed: 31, speed: 9, cursor: false });
+          const I2 = P.layer(c("a1-i2"), { w: 56, h: 56 }); I2.draw = (t, ctx) => { ctx.fillStyle = "#fff"; if (Math.floor(t * 2.4) % 2 === 0) ctx.fillRect(20, 14, 16, 28); ctx.fillStyle = "#555"; ctx.fillRect(6, 46, 44, 2); };
+          const L2a = P.layer(c("a1-c2a"), { w: 640, h: 360 }); L2a.draw = (t, ctx, L) => G.rain(ctx, L, t + 3, { size: 11, seed: 5 });
+          const L2b = P.layer(c("a1-c2b"), { w: 480, h: 270 }); L2b.draw = (t, ctx, L) => G.sort(ctx, L, t + 1, { seed: 9 });
+          const L2c = P.layer(c("a1-c2c"), { w: 480, h: 270 }); L2c.draw = (t, ctx, L) => G.cells(ctx, L, t + 2, { cell: 6, rate: 420 });
+          const L3 = P.layer(c("a1-c3"), { w: 960, h: 540 }); L3.draw = (t, ctx, L) => G.halftone(ctx, L, Math.min(t, 1.1), { step: 14 });
+          const L4 = P.layer(c("a1-c4"), { w: 960, h: 540 }); L4.draw = (t, ctx) => { ctx.fillStyle = "#fff"; ctx.fillRect(0, 269, 960, 2); };
+          const L5 = P.layer(c("a1-c5"), { w: 480, h: 270 }); L5.draw = (t, ctx) => { if (t < 0.4) return; ctx.fillStyle = "rgb(28,28,28)"; for (let x = 0; x < 480; x += 24) ctx.fillRect(x, 0, 1, 270); for (let y = 6; y < 270; y += 24) ctx.fillRect(0, y, 480, 1); };
+
+          const w1 = T.prepare(c("a1-w1"), "your");
+          const w2 = T.prepare(c("a1-w2"), " terminal");
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            P.drive(tl, [
+              { start: 0, dur: 1.45, layer: L1 }, { start: 0, dur: 1.45, layer: I0 }, { start: 0, dur: 1.45, layer: I1 }, { start: 0, dur: 1.45, layer: I2 },
+              { start: 1.45, dur: 0.25, layer: L2a }, { start: 1.7, dur: 0.25, layer: L2b }, { start: 1.95, dur: 0.18, layer: L2c },
+              { start: 2.13, dur: 1.47, layer: L3 }, { start: 3.6, dur: 0.75, layer: L4 }, { start: 4.35, dur: 0.9, layer: L5 },
+            ], 5.25, 0);
+            T.blink(tl, "#a1-cur", 0, 1.45, 0.4);
+            S.type(tl, w1, 0.55, 2);
+            S.type(tl, w2, 0.7, 4);
+            tl.set(["#a1-i0", "#a1-i1", "#a1-i2"], { opacity: 0 }, 0);
+            S.to(tl, "#a1-slot", { width: 0 }, { width: 150 }, 0.62, 4, 0.45);
+            [0.7, 0.95, 1.2].forEach((t, j) => { const i = j % 3, prev = (j + 2) % 3; if (j > 0) tl.set(`#a1-i${prev}`, { opacity: 0 }, t); tl.set(`#a1-i${i}`, { opacity: 1 }, t); });
+            P.STEP.snap(tl, 0);
+            window.__timelines["act1"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

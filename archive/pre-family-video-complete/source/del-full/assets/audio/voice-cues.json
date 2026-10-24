@@ -1,0 +1,100 @@
+[
+  {
+    "id": "vo-01-hook",
+    "file": "01-hook.mp3",
+    "old_start": 0.3,
+    "start": 0.75,
+    "frame": 45
+  },
+  {
+    "id": "vo-02-del",
+    "file": "02-del.mp3",
+    "old_start": 4.2,
+    "start": 4.95,
+    "frame": 297
+  },
+  {
+    "id": "vo-03-every",
+    "file": "03-every.mp3",
+    "old_start": 5.25,
+    "start": 6.3,
+    "frame": 378
+  },
+  {
+    "id": "vo-04-providers",
+    "file": "04-providers.mp3",
+    "old_start": 9.0,
+    "start": 10.5,
+    "frame": 630
+  },
+  {
+    "id": "vo-05-chat",
+    "file": "05-chat.mp3",
+    "old_start": 12.85,
+    "start": 14.333333333333334,
+    "frame": 860
+  },
+  {
+    "id": "vo-06-rust",
+    "file": "06-rust.mp3",
+    "old_start": 18.75,
+    "start": 20.85,
+    "frame": 1251
+  },
+  {
+    "id": "vo-07-gpu",
+    "file": "07-gpu.mp3",
+    "old_start": 20.75,
+    "start": 23.25,
+    "frame": 1395
+  },
+  {
+    "id": "vo-08-wrapper",
+    "file": "08-wrapper.mp3",
+    "old_start": 22.95,
+    "start": 25.433333333333334,
+    "frame": 1526
+  },
+  {
+    "id": "vo-09-light",
+    "file": "09-light.mp3",
+    "old_start": 25.8,
+    "start": 28.65,
+    "frame": 1719
+  },
+  {
+    "id": "vo-10-fast",
+    "file": "10-fast.mp3",
+    "old_start": 27.85,
+    "start": 30.683333333333334,
+    "frame": 1841
+  },
+  {
+    "id": "vo-11-search",
+    "file": "11-search.mp3",
+    "old_start": 28.8,
+    "start": 31.95,
+    "frame": 1917
+  },
+  {
+    "id": "vo-12-butter",
+    "file": "12-butter.mp3",
+    "old_start": 32.1,
+    "start": 35.93333333333333,
+    "frame": 2156
+  },
+  {
+    "id": "vo-13-cta",
+    "file": "13-cta.mp3",
+    "old_start": 39.75,
+    "start": 44.63333333333333,
+    "frame": 2678
+  },
+  {
+    "id": "vo-14-del",
+    "file": "14-del.mp3",
+    "old_start": 41.85,
+    "start": 46.733333333333334,
+    "frame": 2804
+  }
+]

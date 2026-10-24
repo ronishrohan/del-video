@@ -1,0 +1,5 @@
+I'm halfway through a fix. Claude is still working, and I'm checking the test output in a shell. Something looks familiar. We dealt with this last week.
+
+Del keeps my agents and shell sessions in one native window. I leave Claude running and use Command K to find the old conversation. It takes me straight to the passage about a setting we'd changed.
+
+I queue a follow-up asking Claude to check that setting, then return to the shell. Now the agent has the missing detail, and I haven't had to explain the whole thing again.

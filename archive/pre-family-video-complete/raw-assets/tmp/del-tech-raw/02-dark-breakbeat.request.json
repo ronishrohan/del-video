@@ -1,0 +1,6 @@
+{
+  "prompt": "Dark cyberpunk breakbeat, 146 BPM, nimble late-1990s big-beat energy with contemporary clean production. Crisp chopped syncopated sampled-style drum breaks made from original percussion, short acidic arpeggio answering the breaks, deep controlled sub bass, tiny stuttering glitch accents like fast-moving data. Snappy kick/snare attacks and audible pockets between phrases for narration. No four-on-the-floor techno beat. An immediate tight drum slam, restless chopped groove, then a decisive final drum-and-sub punctuation with brief decay. Original music only. Strictly instrumental: absolutely no human voice, singing, speech, whispers, chant or vocal samples. Sleek engineered graphite-and-silver mood for abstract procedural terminal visuals. Clean present-day full-band sound, no old-radio treatment, calliope, circus, waltz, brass, or constant generic noise/static. Not an imitation of any existing film score, artist or theme. A complete purposeful ten-second cue, not an excerpt: immediate musical attack at 0.0s, recognisable rhythmic development, decisive closing hit around 9.2s, short natural decay completely finished by 9.9s. Leave midrange space for a future voiceover; preserve dynamic transients and avoid a brickwall-limited master.",
+  "music_length_ms": 10000,
+  "force_instrumental": true,
+  "model_id": "music_v2_5"
+}

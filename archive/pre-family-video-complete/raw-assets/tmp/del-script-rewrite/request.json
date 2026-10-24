@@ -1,0 +1,9 @@
+{
+  "text": "[calm, conversational, unhurried] I've usually got an agent working while I'm checking something in a shell. Then I need the session I was just looking at.\n\nDel is a native terminal multiplexer that keeps that work in one window. I move between Claude and my shell. While the agent's busy, I queue the next message. If I need an older chat, Command K gets me back to it.\n\nIt's built in Rust with GPUI. I like having a native app for the place I spend most of my day.\n\nI'll leave the agent running. I'm going to check that failing test.",
+  "model_id": "eleven_v4",
+  "language_code": "en",
+  "voice_settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
+}

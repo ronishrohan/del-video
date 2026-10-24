@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Act 3 — Range</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0b0b0d; }
+        #root .clip { position: absolute; inset: 0; }
+        .bigc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        .word { font-family: var(--mono); font-weight: 600; font-size: 470px; letter-spacing: -0.06em; line-height: 1; color: #f4f6f8; mix-blend-mode: difference; }
+        #a3-cur { position: absolute; left: 50%; top: 50%; width: 22px; height: 40px; margin: -20px 0 0 -11px; background: #f4f6f8; display: block; }
+        .ui { background: #050506; }
+      </style>
+
+      <div data-hf-id="hf-bdh9" id="root" data-composition-id="act3" data-width="1920" data-height="1080" data-duration="9.750000000">
+        <div data-hf-id="hf-tan6" class="stage">
+          <section data-hf-id="hf-jz22" class="shot clip ink" id="a3-rust" data-start="0.000000000" data-duration="1.583333333"><canvas data-hf-id="hf-cga0" class="pix" id="a3-crust"></canvas><div data-hf-id="hf-8l45" class="bigc"><span data-hf-id="hf-a1ez" class="word" id="a3-wr" style="font-size:64px">built in</span></div></section>
+          <section data-hf-id="hf-2bwe" class="shot clip ink" id="a3-stop" data-start="1.583333333" data-duration="0.816666667"><span data-hf-id="hf-l4nv" id="a3-cur"></span></section>
+          <section data-hf-id="hf-y4ib" class="shot clip ink" id="a3-gpu" data-start="2.400000000" data-duration="1.883333333"><canvas data-hf-id="hf-uwgo" class="pix" id="a3-cgpu"></canvas><div data-hf-id="hf-kd2x" class="bigc"><span data-hf-id="hf-uces" class="word" id="a3-wg">GPU</span></div></section>
+          <section data-hf-id="hf-dmtc" class="shot clip ink" id="a3-wrap" data-start="4.283333333" data-duration="3.450000000"><canvas data-hf-id="hf-ko6i" class="pix" id="a3-cwrap"></canvas></section>
+          <section data-hf-id="hf-ikdt" class="shot clip ui" id="a3-light" data-start="7.733333333" data-duration="0.966666667"><div data-hf-id="hf-ajwt" class="cam" id="a3-cam"><div data-hf-id="hf-s8rx" id="a3-w"></div></div></section>
+          <section data-hf-id="hf-mcts" class="shot clip ink" id="a3-line" data-start="8.700000000" data-duration="1.050000000"><canvas data-hf-id="hf-jakg" class="pix" id="a3-cline"></canvas></section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, G = P.G, S = P.STEP, T = window.TYPE, D = window.DEL, H = P.hash;
+          const c = (id) => document.getElementById(id);
+          const LR = P.layer(c("a3-crust"), { w: 480, h: 270 });
+          LR.draw = (t, ctx) => { ctx.font = '8px "Geist Mono", monospace'; ctx.textBaseline = "top"; const rows = 27, lh = 10, row = Math.round(rows * S.at(t, 8, 0.7)); for (let r = 0; r < rows; r++) { if (r > row) break; const v = r >= row - 1 ? 255 : 120; ctx.fillStyle = `rgb(${v},${v},${v})`; ctx.fillText(P.lineAt(71, r) + "  " + P.lineAt(72, r + 9), 6, r * lh + 2); } ctx.fillStyle = "#fff"; ctx.fillRect(0, Math.min(270, row * lh), 480, 1); };
+          // GPU: rows switch on all at once in a travelling pattern; the word lands on "GPU" with a 2-frame flash
+          const LG = P.layer(c("a3-cgpu"), { w: 960, h: 540 });
+          LG.draw = (t, ctx) => { ctx.font = '12px "Geist Mono", monospace'; ctx.textBaseline = "top"; const lit = t >= 1.49; for (let r = 0; r < 30; r++) { const v = !lit ? 70 : Math.cos(t * 7 - r * 0.25) > 0 ? 255 : 110; ctx.fillStyle = `rgb(${v},${v},${v})`; ctx.fillText(P.lineAt(73, r) + "   " + P.lineAt(74, r + 3), 20, r * 18 + 6); } if (t >= 1.49 && t < 1.524) { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, 960, 540); } };
+          // wrapper peels off in accelerating exponential steps; "Nothing wasted" cuts to almost nothing
+          const LW = P.layer(c("a3-cwrap"), { w: 960, h: 540 });
+          LW.draw = (t, ctx) => {
+            const peel = S.at(t - 0.35, 7, 1.6);
+            const box = { x: 180, y: 70, w: 600, h: 400 };
+            if (t >= 1.82) { ctx.fillStyle = "#fff"; ctx.fillRect(470, 262, 10, 18); return; }
+            const dens = 1;
+            ctx.font = '13px "Geist Mono", monospace'; ctx.textBaseline = "top";
+            for (let r = 0; r < 18; r++) { if (H(r, 1, 81) > dens && r < 17) continue; const g = Math.round(200 * (0.6 + 0.4 * H(r, 2, 81))); ctx.fillStyle = `rgb(${g},${g},${g})`; ctx.fillText(P.lineAt(81, r), box.x + 40, box.y + 70 + r * 18); }
+            ctx.fillStyle = "#fff"; if (Math.floor(t * 2.2) % 2 === 0) ctx.fillRect(box.x + 40, box.y + 70 + 18 * 18, 8, 14);
+            if (peel < 1) {
+              const parts = [[box.x - 30, box.y - 50, box.w + 60, 4], [box.x - 30, box.y + box.h + 30, box.w + 60, 4], [box.x - 30, box.y - 50, 4, box.h + 84], [box.x + box.w + 26, box.y - 50, 4, box.h + 84], [box.x - 10, box.y - 36, 90, 16], [box.x + 90, box.y - 36, 90, 16], [box.x + 190, box.y - 36, 90, 16], [box.x - 10, box.y - 12, box.w + 20, 22], [box.x + 4, box.y - 8, 130, 12]];
+              parts.forEach((pt, i) => { for (let yy = 0; yy < pt[3]; yy += 2) { const sp = (0.4 + H(i, yy, 82)) * 1100 * peel, dir = H(i, yy + 1, 82) > 0.5 ? 1 : -1, g = i >= 8 ? 230 : 170; ctx.fillStyle = `rgb(${g},${g},${g})`; ctx.fillRect(pt[0] + dir * sp, pt[1] + yy, pt[2], Math.min(2, pt[3])); } });
+              if (peel === 0) { ctx.fillStyle = "#000"; ctx.font = '10px "Geist Mono", monospace'; ctx.fillText("https://app.example.com/terminal", box.x + 8, box.y - 7); }
+            }
+          };
+          const LL = P.layer(c("a3-cline"), { w: 960, h: 540 });
+          LL.draw = (t, ctx) => { ctx.fillStyle = "#fff"; ctx.fillRect(170, 269, 620, 2); };
+          // light by design: the clean, crisp window
+          const S0 = D.DEFAULT_SESSIONS;
+          c("a3-w").innerHTML = D.windowFrame(`<div class="col"><div class="thread"><div class="umsg">Profile the search worker</div><div class="amsg"><p>Peak memory is down from 412 MB to 198 MB on the benchmark.</p></div></div><div style="padding:0 0 16px">${D.composer({ id: "a3-c", provider: "claude", placeholder: "Ask for follow-up changes", folder: "~/dev/search-worker" })}</div></div>`, { id: "a3-win", sessions: S0.map((s, k) => Object.assign({}, s, { sel: k === 1 })) });
+
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            P.drive(tl, [{ start: 0, dur: 1.6, layer: LR }, { start: 2.0, dur: 1.9, layer: LG }, { start: 3.9, dur: 3.1, layer: LW }, { start: 7.98, dur: 1.02, layer: LL }], 9.0, 18.75);
+            tl.set("#a3-cur", { opacity: 1 }, 1.6);
+            tl.set("#a3-wg", { opacity: 0 }, 2.0);
+            tl.set("#a3-wg", { opacity: 1 }, 3.515);
+            tl.set("#a3-cam", { x: 960 - 720 * 1.33, y: 540 - 450 * 1.33, scale: 1.33 }, 7.0);
+            tl.set("#a3-wr", { textContent: "RUST", fontSize: 470 }, 0.83);
+            P.STEP.snap(tl, 18.75);
+            window.__timelines["act3"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

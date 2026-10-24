@@ -1,0 +1,588 @@
+[
+  {
+    "id": "vo-01-hook",
+    "file": "01-hook.mp3",
+    "old_start": 0.3,
+    "start": 0.75,
+    "frame": 45,
+    "trim_from_raw": 0.2,
+    "alignment_correlation": 0.896,
+    "words": [
+      {
+        "text": "What",
+        "time": 0.75,
+        "source_offset": 0,
+        "frame": 45
+      },
+      {
+        "text": "if",
+        "time": 0.86,
+        "source_offset": 0.11,
+        "frame": 52
+      },
+      {
+        "text": "your",
+        "time": 1.01,
+        "source_offset": 0.26,
+        "frame": 61
+      },
+      {
+        "text": "terminal",
+        "time": 1.38,
+        "source_offset": 0.63,
+        "frame": 83
+      },
+      {
+        "text": "moved",
+        "time": 1.94,
+        "source_offset": 1.19,
+        "frame": 116
+      },
+      {
+        "text": "as",
+        "time": 2.32,
+        "source_offset": 1.57,
+        "frame": 139
+      },
+      {
+        "text": "fast",
+        "time": 2.58,
+        "source_offset": 1.83,
+        "frame": 155
+      },
+      {
+        "text": "as",
+        "time": 2.79,
+        "source_offset": 2.04,
+        "frame": 167
+      },
+      {
+        "text": "you",
+        "time": 2.93,
+        "source_offset": 2.18,
+        "frame": 176
+      },
+      {
+        "text": "think?",
+        "time": 3.24,
+        "source_offset": 2.49,
+        "frame": 194
+      }
+    ]
+  },
+  {
+    "id": "vo-02-del",
+    "file": "02-del.mp3",
+    "old_start": 4.2,
+    "start": 4.95,
+    "frame": 297,
+    "trim_from_raw": 0.04,
+    "alignment_correlation": 0.948,
+    "words": [
+      {
+        "text": "Dell!",
+        "time": 5.11,
+        "source_offset": 0.16,
+        "frame": 307
+      }
+    ]
+  },
+  {
+    "id": "vo-03-every",
+    "file": "03-every.mp3",
+    "old_start": 5.25,
+    "start": 6.3,
+    "frame": 378,
+    "trim_from_raw": 0.05,
+    "alignment_correlation": 0.887,
+    "words": [
+      {
+        "text": "every",
+        "time": 6.3,
+        "source_offset": 0,
+        "frame": 378
+      },
+      {
+        "text": "agent,",
+        "time": 6.9,
+        "source_offset": 0.6,
+        "frame": 414
+      },
+      {
+        "text": "every",
+        "time": 7.78,
+        "source_offset": 1.48,
+        "frame": 467
+      },
+      {
+        "text": "shell,",
+        "time": 8.31,
+        "source_offset": 2.01,
+        "frame": 499
+      },
+      {
+        "text": "one",
+        "time": 8.92,
+        "source_offset": 2.62,
+        "frame": 535
+      },
+      {
+        "text": "window.",
+        "time": 9.25,
+        "source_offset": 2.95,
+        "frame": 555
+      }
+    ]
+  },
+  {
+    "id": "vo-04-providers",
+    "file": "04-providers.mp3",
+    "old_start": 9.0,
+    "start": 10.5,
+    "frame": 630,
+    "trim_from_raw": 0.06,
+    "alignment_correlation": 0.882,
+    "words": [
+      {
+        "text": "codecs,",
+        "time": 10.5,
+        "source_offset": 0,
+        "frame": 630
+      },
+      {
+        "text": "cloud",
+        "time": 11.45,
+        "source_offset": 0.95,
+        "frame": 687
+      },
+      {
+        "text": "code,",
+        "time": 11.99,
+        "source_offset": 1.49,
+        "frame": 719
+      },
+      {
+        "text": "any",
+        "time": 12.7,
+        "source_offset": 2.2,
+        "frame": 762
+      },
+      {
+        "text": "agent",
+        "time": 12.87,
+        "source_offset": 2.37,
+        "frame": 772
+      },
+      {
+        "text": "you",
+        "time": 13.23,
+        "source_offset": 2.73,
+        "frame": 794
+      },
+      {
+        "text": "install.",
+        "time": 13.44,
+        "source_offset": 2.94,
+        "frame": 806
+      }
+    ]
+  },
+  {
+    "id": "vo-05-chat",
+    "file": "05-chat.mp3",
+    "old_start": 12.85,
+    "start": 14.333333333333334,
+    "frame": 860,
+    "trim_from_raw": 0.02,
+    "alignment_correlation": 0.916,
+    "words": [
+      {
+        "text": "chat",
+        "time": 14.33333,
+        "source_offset": 0,
+        "frame": 860
+      },
+      {
+        "text": "or",
+        "time": 14.79333,
+        "source_offset": 0.46,
+        "frame": 888
+      },
+      {
+        "text": "the",
+        "time": 15.04333,
+        "source_offset": 0.71,
+        "frame": 903
+      },
+      {
+        "text": "raw",
+        "time": 15.39333,
+        "source_offset": 1.06,
+        "frame": 924
+      },
+      {
+        "text": "terminal.",
+        "time": 15.75333,
+        "source_offset": 1.42,
+        "frame": 945
+      },
+      {
+        "text": "Cue",
+        "time": 16.75333,
+        "source_offset": 2.42,
+        "frame": 1005
+      },
+      {
+        "text": "the",
+        "time": 17.02333,
+        "source_offset": 2.69,
+        "frame": 1021
+      },
+      {
+        "text": "next",
+        "time": 17.47333,
+        "source_offset": 3.14,
+        "frame": 1048
+      },
+      {
+        "text": "task",
+        "time": 17.65333,
+        "source_offset": 3.32,
+        "frame": 1059
+      },
+      {
+        "text": "while",
+        "time": 18.01333,
+        "source_offset": 3.68,
+        "frame": 1081
+      },
+      {
+        "text": "one",
+        "time": 18.46333,
+        "source_offset": 4.13,
+        "frame": 1108
+      },
+      {
+        "text": "runs.",
+        "time": 18.73333,
+        "source_offset": 4.4,
+        "frame": 1124
+      }
+    ]
+  },
+  {
+    "id": "vo-06-rust",
+    "file": "06-rust.mp3",
+    "old_start": 18.75,
+    "start": 20.85,
+    "frame": 1251,
+    "trim_from_raw": 0.06,
+    "alignment_correlation": 0.861,
+    "words": [
+      {
+        "text": "Built",
+        "time": 20.9,
+        "source_offset": 0.05,
+        "frame": 1254
+      },
+      {
+        "text": "in",
+        "time": 21.43,
+        "source_offset": 0.58,
+        "frame": 1286
+      },
+      {
+        "text": "Rust.",
+        "time": 21.68,
+        "source_offset": 0.83,
+        "frame": 1301
+      }
+    ]
+  },
+  {
+    "id": "vo-07-gpu",
+    "file": "07-gpu.mp3",
+    "old_start": 20.75,
+    "start": 23.25,
+    "frame": 1395,
+    "trim_from_raw": 0.12,
+    "alignment_correlation": 0.836,
+    "words": [
+      {
+        "text": "rendered",
+        "time": 23.26,
+        "source_offset": 0.01,
+        "frame": 1396
+      },
+      {
+        "text": "on",
+        "time": 24.12,
+        "source_offset": 0.87,
+        "frame": 1447
+      },
+      {
+        "text": "the",
+        "time": 24.37,
+        "source_offset": 1.12,
+        "frame": 1462
+      },
+      {
+        "text": "GPU.",
+        "time": 24.74,
+        "source_offset": 1.49,
+        "frame": 1484
+      }
+    ]
+  },
+  {
+    "id": "vo-08-wrapper",
+    "file": "08-wrapper.mp3",
+    "old_start": 22.95,
+    "start": 25.433333333333334,
+    "frame": 1526,
+    "trim_from_raw": 0.1,
+    "alignment_correlation": 0.888,
+    "words": [
+      {
+        "text": "No",
+        "time": 25.43333,
+        "source_offset": 0,
+        "frame": 1526
+      },
+      {
+        "text": "web",
+        "time": 25.52333,
+        "source_offset": 0.09,
+        "frame": 1531
+      },
+      {
+        "text": "wrapper.",
+        "time": 25.80333,
+        "source_offset": 0.37,
+        "frame": 1548
+      },
+      {
+        "text": "Nothing",
+        "time": 26.95333,
+        "source_offset": 1.52,
+        "frame": 1617
+      },
+      {
+        "text": "wasted.",
+        "time": 27.60333,
+        "source_offset": 2.17,
+        "frame": 1656
+      }
+    ]
+  },
+  {
+    "id": "vo-09-light",
+    "file": "09-light.mp3",
+    "old_start": 25.8,
+    "start": 28.65,
+    "frame": 1719,
+    "trim_from_raw": 0.12,
+    "alignment_correlation": 0.881,
+    "words": [
+      {
+        "text": "Light",
+        "time": 28.65,
+        "source_offset": 0,
+        "frame": 1719
+      },
+      {
+        "text": "by",
+        "time": 29.59,
+        "source_offset": 0.94,
+        "frame": 1775
+      },
+      {
+        "text": "design.",
+        "time": 29.63,
+        "source_offset": 0.98,
+        "frame": 1778
+      }
+    ]
+  },
+  {
+    "id": "vo-10-fast",
+    "file": "10-fast.mp3",
+    "old_start": 27.85,
+    "start": 30.683333333333334,
+    "frame": 1841,
+    "trim_from_raw": 0.13,
+    "alignment_correlation": 0.92,
+    "words": [
+      {
+        "text": "Fast!",
+        "time": 30.76333,
+        "source_offset": 0.08,
+        "frame": 1846
+      }
+    ]
+  },
+  {
+    "id": "vo-11-search",
+    "file": "11-search.mp3",
+    "old_start": 28.8,
+    "start": 31.95,
+    "frame": 1917,
+    "trim_from_raw": 0.13,
+    "alignment_correlation": 0.905,
+    "words": [
+      {
+        "text": "Search",
+        "time": 32.08,
+        "source_offset": 0.13,
+        "frame": 1925
+      },
+      {
+        "text": "it.",
+        "time": 32.36,
+        "source_offset": 0.41,
+        "frame": 1942
+      },
+      {
+        "text": "Find",
+        "time": 32.96,
+        "source_offset": 1.01,
+        "frame": 1978
+      },
+      {
+        "text": "it.",
+        "time": 33.26,
+        "source_offset": 1.31,
+        "frame": 1996
+      },
+      {
+        "text": "Jump",
+        "time": 33.82,
+        "source_offset": 1.87,
+        "frame": 2029
+      },
+      {
+        "text": "to",
+        "time": 34.17,
+        "source_offset": 2.22,
+        "frame": 2050
+      },
+      {
+        "text": "the",
+        "time": 34.33,
+        "source_offset": 2.38,
+        "frame": 2060
+      },
+      {
+        "text": "line.",
+        "time": 34.58,
+        "source_offset": 2.63,
+        "frame": 2075
+      }
+    ]
+  },
+  {
+    "id": "vo-12-butter",
+    "file": "12-butter.mp3",
+    "old_start": 32.1,
+    "start": 35.93333333333333,
+    "frame": 2156,
+    "trim_from_raw": 0.09,
+    "alignment_correlation": 0.864,
+    "words": [
+      {
+        "text": "Smooth",
+        "time": 36.15333,
+        "source_offset": 0.22,
+        "frame": 2169
+      },
+      {
+        "text": "like",
+        "time": 36.58333,
+        "source_offset": 0.65,
+        "frame": 2195
+      },
+      {
+        "text": "butter",
+        "time": 37.08333,
+        "source_offset": 1.15,
+        "frame": 2225
+      },
+      {
+        "text": "every",
+        "time": 38.15333,
+        "source_offset": 2.22,
+        "frame": 2289
+      },
+      {
+        "text": "frame",
+        "time": 38.29333,
+        "source_offset": 2.36,
+        "frame": 2298
+      }
+    ]
+  },
+  {
+    "id": "vo-13-cta",
+    "file": "13-cta.mp3",
+    "old_start": 39.75,
+    "start": 44.63333333333333,
+    "frame": 2678,
+    "trim_from_raw": 0.17,
+    "alignment_correlation": 0.919,
+    "words": [
+      {
+        "text": "What",
+        "time": 44.64333,
+        "source_offset": 0.01,
+        "frame": 2679
+      },
+      {
+        "text": "if",
+        "time": 44.79333,
+        "source_offset": 0.16,
+        "frame": 2688
+      },
+      {
+        "text": "your",
+        "time": 44.95333,
+        "source_offset": 0.32,
+        "frame": 2697
+      },
+      {
+        "text": "tools",
+        "time": 45.31333,
+        "source_offset": 0.68,
+        "frame": 2719
+      },
+      {
+        "text": "kept",
+        "time": 45.69333,
+        "source_offset": 1.06,
+        "frame": 2742
+      },
+      {
+        "text": "up?",
+        "time": 46.04333,
+        "source_offset": 1.41,
+        "frame": 2763
+      }
+    ]
+  },
+  {
+    "id": "vo-14-del",
+    "file": "14-del.mp3",
+    "old_start": 41.85,
+    "start": 46.733333333333334,
+    "frame": 2804,
+    "trim_from_raw": 0.08,
+    "alignment_correlation": 0.936,
+    "words": [
+      {
+        "text": "Dell!",
+        "time": 46.78333,
+        "source_offset": 0.05,
+        "frame": 2807
+      }
+    ]
+  }
+]

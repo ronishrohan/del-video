@@ -1,0 +1,48 @@
+/* Del launch film: shared look. Loaded from the host head; sub-compositions are cloned into the host. */
+@font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+@font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+
+:root {
+  /* Brand: graphite + silver (from del.svg gradients) */
+  --graphite-0: #090a0c; --graphite-1: #17181b; --graphite-2: #303236; --graphite-3: #65686c;
+  --silver-0: #fafbfc; --silver-1: #d5d9df; --silver-2: #9fa6b0; --silver-3: #7c848f;
+  /* Light palette = Del light shell */
+  --paper: #eeeef0; --ink: #111113;
+  /* Del dark chrome */
+  --shell: rgba(38, 38, 42, 0.55); --page: rgba(0, 0, 0, 0.2);
+  --hair: rgba(255, 255, 255, 0.08); --hover: rgba(255, 255, 255, 0.04); --active: rgba(255, 255, 255, 0.08);
+  --tx: #f5f5f5; --tx-2: rgba(255, 255, 255, 0.8); --muted: rgba(255, 255, 255, 0.55); --faint: rgba(255, 255, 255, 0.35);
+  --popover: #2b2b2e; --chip: #303033;
+  /* Provider + semantic accents (in-UI only) */
+  --codex: #f5f5f5; --claude: #e3e3e6; --unread: #f5f5f5; --steam: #bdbdc2; --match: rgba(255, 255, 255, 0.24); --match-tx: #c9c9ce;
+  --add: #f5f5f5; --del: rgba(255,255,255,0.45);
+  --font: "Geist", -apple-system, system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+.stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--font); color: var(--tx); -webkit-font-smoothing: antialiased; }
+.shot { position: absolute; inset: 0; overflow: hidden; }
+.light { background: var(--paper); color: var(--ink); }
+.light::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.65), rgba(255,255,255,0) 70%); }
+.light .grid-lines { position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(to right, rgba(17,17,19,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,17,19,0.06) 1px, transparent 1px);
+  background-size: 96px 96px; background-position: center; }
+.dark { background: #0c0c0e; color: var(--tx); }
+.vignette::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.35) 100%); }
+.light.vignette::after { background: radial-gradient(ellipse at center, transparent 40%, rgba(40,40,48,0.20) 100%); }
+
+.center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.caret { display: inline-block; width: 0.07em; height: 1.05em; background: currentColor; vertical-align: -0.12em; margin-left: 0.04em; }
+.typed .ch { display: none; }
+.cam { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+/* v3: procedural dither layers + crisp mono type */
+.pix { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; image-rendering: pixelated; display: block; }
+.ink { background: #0b0b0d; color: #d9dce1; }
+.mono { font-family: var(--mono); }
+.tinyc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 30px; color: #d9dce1; letter-spacing: 0; white-space: pre; }
+.giantm { font-family: var(--mono); font-size: 300px; line-height: 1; letter-spacing: -0.05em; color: #f4f6f8; white-space: pre; font-weight: 500; }
+.blockcur { display: inline-block; width: 0.6em; height: 1em; background: #f4f6f8; vertical-align: -0.12em; margin-left: 0.05em; }
+.cap { position: absolute; left: 90px; bottom: 80px; font-family: var(--mono); font-size: 30px; color: #f4f6f8; display: flex; align-items: center; gap: 16px; text-shadow: 0 0 0 #000; }
+.cap .sq { width: 14px; height: 14px; display: inline-block; }

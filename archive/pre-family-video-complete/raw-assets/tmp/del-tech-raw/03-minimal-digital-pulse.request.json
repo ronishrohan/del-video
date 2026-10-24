@@ -1,0 +1,6 @@
+{
+  "prompt": "Minimal digital pulse, 116 BPM. Sparse precise modular-synth sequence in a cold spacious stereo field, deep rounded pulsing bass, isolated glassy computer-like tones, microscopic clock ticks. Quiet intensity and elegant negative space, no big drum kit, no busy breakbeat, no dense industrial wall of bass. Begin immediately with one deep bass-and-glass impact, introduce a dry asymmetric plucked sequence, gradually add subdivisions and density without changing tempo, finish with one decisive low electronic punctuation and a brief clear bell decay. Original music only. Strictly instrumental: absolutely no human voice, singing, speech, whispers, chant or vocal samples. Sleek engineered graphite-and-silver mood for abstract procedural terminal visuals. Clean present-day full-band sound, no old-radio treatment, calliope, circus, waltz, brass, or constant generic noise/static. Not an imitation of any existing film score, artist or theme. A complete purposeful ten-second cue, not an excerpt: immediate musical attack at 0.0s, recognisable rhythmic development, decisive closing hit around 9.2s, short natural decay completely finished by 9.9s. Leave midrange space for a future voiceover; preserve dynamic transients and avoid a brickwall-limited master.",
+  "music_length_ms": 10000,
+  "force_instrumental": true,
+  "model_id": "music_v2_5"
+}

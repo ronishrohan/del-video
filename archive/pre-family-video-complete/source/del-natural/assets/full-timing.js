@@ -1,0 +1,25 @@
+(function(){
+ const P=window.PROC, shots=[{"id": "a1-s1", "start": 0.0, "end": 1.2, "oldStart": 0, "oldEnd": 1.45}, {"id": "a2-agent", "start": 1.2, "end": 3.45, "oldStart": 0, "oldEnd": 1.49}, {"id": "a2-term", "start": 3.45, "end": 5.55, "oldStart": 8.66, "oldEnd": 10.02}, {"id": "a2-agents", "start": 5.55, "end": 8.25, "oldStart": 5.95, "oldEnd": 7.6}, {"id": "a2-shell", "start": 8.25, "end": 10.65, "oldStart": 1.49, "oldEnd": 2.63}, {"id": "a1-s2c", "start": 10.65, "end": 11.25, "oldStart": 1.95, "oldEnd": 2.13}, {"id": "a1-s2b", "start": 11.25, "end": 12.0, "oldStart": 1.7, "oldEnd": 1.95}, {"id": "a1-s5", "start": 12.0, "end": 12.75, "oldStart": 4.35, "oldEnd": 5.25}, {"id": "a2-win", "start": 12.75, "end": 16.2, "oldStart": 2.63, "oldEnd": 3.75}, {"id": "a4-fast", "start": 16.2, "end": 18.9, "oldStart": 0.15, "oldEnd": 1}, {"id": "a2-queue", "start": 18.9, "end": 23.7, "oldStart": 10.02, "oldEnd": 12.6}, {"id": "a4-k", "start": 23.7, "end": 24.6, "oldStart": 1, "oldEnd": 2.5}, {"id": "a4-jump", "start": 24.6, "end": 26.1, "oldStart": 2.92, "oldEnd": 4.35}, {"id": "a1-s2a", "start": 26.1, "end": 28.5, "oldStart": 1.45, "oldEnd": 1.7}, {"id": "a3-rust", "start": 28.5, "end": 29.55, "oldStart": 0, "oldEnd": 1.6}, {"id": "a3-gpu", "start": 29.55, "end": 30.9, "oldStart": 2, "oldEnd": 3.9}, {"id": "a3-light", "start": 30.9, "end": 34.2, "oldStart": 7, "oldEnd": 7.98}, {"id": "a4-butter", "start": 34.2, "end": 37.5, "oldStart": 4.35, "oldEnd": 7.5}, {"id": "a4-result", "start": 37.5, "end": 39.3, "oldStart": 9.6, "oldEnd": 11.925}, {"id": "a4-send", "start": 39.3, "end": 45.3, "oldStart": 7.5, "oldEnd": 9.6}, {"id": "a2-cas", "start": 45.3, "end": 47.1, "oldStart": 12.6, "oldEnd": 13.5}, {"id": "a5-end", "start": 47.1, "end": 50, "oldStart": 2.1, "oldEnd": 5.2}], byId=Object.fromEntries(shots.map(s=>[s.id,s]));
+ const pose=t=>{const f=Math.max(0,Math.round(t*60+1e-6));return(Math.floor(f/9)*9+(f%9>=5?5:0))/60;};
+ const snap=t=>{const f=t*60,c=Math.floor(f/9)*9;return[c,c+5,c+9].reduce((a,b)=>Math.abs(b-f)<Math.abs(a-f)?b:a)/60;};
+ P.TIMING={snap,pose,warp:t=>t,inverse:t=>t};P.CLOCK=0;window.__FULL_EVENTS=[];
+ P.STEP.q=pose;P.STEP.qg=pose;
+ const originalLayer=P.layer;
+ P.layer=(canvas,opts)=>{const L=originalLayer(canvas,opts);L.canvas=canvas;return L;};
+ P.STEP.snap=(tl,A)=>{
+  const list=tl.getChildren(false,true,false).filter(ch=>ch.duration()===0);
+  for(const ch of list){const targets=ch.targets?ch.targets():[];const shot=targets[0]?.closest?.('section.shot');const s=byId[shot?.id];
+   if(!s){ch.startTime(0);continue;}
+   const old=ch.startTime();let at=s.start+(old-s.oldStart)/(s.oldEnd-s.oldStart)*(s.end-s.start);
+   at=snap(Math.max(s.start,Math.min(s.end-5/60,at)));if(targets[0]?.id==='a2-q-r0'&&ch.vars.display==='flex')at=snap(20.34);if(targets[0]?.id==='a2-c5-typed'&&ch.vars.textContent===''&&old>10.4)at=snap(20.34);ch.startTime(at);
+   const vars={};for(const k of ['className','textContent','innerHTML','opacity','display','x','y','scale'])if(k in ch.vars)vars[k]=ch.vars[k];
+   window.__FULL_EVENTS.push({frame:Math.round(at*60),time:at,targets:targets.map(x=>x.id||x.parentElement?.id||''),vars});
+  }
+ };
+ P.drive=(tl,scenes,dur,A)=>{const d={_t:0};
+  const paint=v=>{P.CLOCK=pose(v);for(const scene of scenes){const section=scene.layer.canvas.closest('section.shot'),s=byId[section?.id];if(!s||P.CLOCK<s.start-1e-6||P.CLOCK>=s.end-1e-6)continue;
+   const old=s.oldStart+(P.CLOCK-s.start)/(s.end-s.start)*(s.oldEnd-s.oldStart);scene.layer.render(Math.max(0,old-scene.start));
+  }};
+  Object.defineProperty(d,'t',{get(){return this._t},set(v){this._t=v;paint(v)}});tl.fromTo(d,{t:0},{t:50,duration:50,ease:'none'},0);paint(0);
+ };
+})();

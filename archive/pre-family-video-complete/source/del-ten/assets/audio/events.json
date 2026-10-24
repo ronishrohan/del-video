@@ -1,0 +1,97 @@
+[
+  {
+    "frame": 0,
+    "seconds": 0.0,
+    "kind": "hit"
+  },
+  {
+    "frame": 14,
+    "seconds": 0.23333333333333334,
+    "kind": "tick"
+  },
+  {
+    "frame": 50,
+    "seconds": 0.8333333333333334,
+    "kind": "hit"
+  },
+  {
+    "frame": 90,
+    "seconds": 1.5,
+    "kind": "tick"
+  },
+  {
+    "frame": 189,
+    "seconds": 3.15,
+    "kind": "tick"
+  },
+  {
+    "frame": 234,
+    "seconds": 3.9,
+    "kind": "hit"
+  },
+  {
+    "frame": 315,
+    "seconds": 5.25,
+    "kind": "click"
+  },
+  {
+    "frame": 324,
+    "seconds": 5.4,
+    "kind": "click"
+  },
+  {
+    "frame": 333,
+    "seconds": 5.55,
+    "kind": "click"
+  },
+  {
+    "frame": 346,
+    "seconds": 5.766666666666667,
+    "kind": "tick"
+  },
+  {
+    "frame": 351,
+    "seconds": 5.85,
+    "kind": "tick"
+  },
+  {
+    "frame": 356,
+    "seconds": 5.933333333333334,
+    "kind": "tick"
+  },
+  {
+    "frame": 396,
+    "seconds": 6.6,
+    "kind": "tick"
+  },
+  {
+    "frame": 420,
+    "seconds": 7.0,
+    "kind": "hit"
+  },
+  {
+    "frame": 441,
+    "seconds": 7.35,
+    "kind": "tick"
+  },
+  {
+    "frame": 459,
+    "seconds": 7.65,
+    "kind": "tick"
+  },
+  {
+    "frame": 504,
+    "seconds": 8.4,
+    "kind": "tick"
+  },
+  {
+    "frame": 549,
+    "seconds": 9.15,
+    "kind": "hit"
+  },
+  {
+    "frame": 590,
+    "seconds": 9.833333333333334,
+    "kind": "end"
+  }
+]

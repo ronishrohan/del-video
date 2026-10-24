@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Del — graphite / silver</title>
+<script src="assets/gsap.min.js"></script><script src="assets/proc.js"></script><script src="assets/del-ui.js"></script>
+<script src="assets/lab/engine.js"></script>
+<script src="assets/lab/_term.js"></script><script src="assets/lab/bayer-flow.js"></script><script src="assets/lab/atkinson-gradient.js"></script><script src="assets/lab/halftone-field.js"></script><script src="assets/lab/mux-split.js"></script>
+<link rel="stylesheet" href="assets/shared.css"><link rel="stylesheet" href="assets/del.css">
+<style>
+@font-face{font-family:Geist;src:url('assets/fonts/Geist-Variable.woff2')}@font-face{font-family:'Geist Mono';src:url('assets/fonts/GeistMono-Variable.woff2')}
+html,body{margin:0;background:#0b0c0e}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#0b0c0e;color:#f4f6f8;font-family:'Geist Mono',monospace}.clip{position:absolute;inset:0;overflow:hidden}.field{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}.centered{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}.tiny{font-size:30px;letter-spacing:-.02em}.black{background:#0b0c0e;padding:10px 18px}.giant{font-size:400px;font-weight:500;letter-spacing:-.065em;line-height:1;-webkit-text-stroke:18px #0b0c0e;paint-order:stroke fill}.wordmark{font-family:Geist,sans-serif;font-size:470px;font-weight:600;letter-spacing:-.065em;line-height:1}.small-note{position:absolute;bottom:142px;left:0;right:0;text-align:center;font-size:30px}.bar{display:inline-block;width:.54em;height:.92em;background:#f4f6f8;margin-left:.1em;vertical-align:-.06em}#endtype{font-size:340px}#endtag{bottom:220px}#endline{position:absolute;left:192px;right:192px;top:144px;height:2px;background:#d9dce1}.mini-field{width:112px;height:112px;image-rendering:pixelated;border:1px solid #d9dce1;margin:0 22px}
+</style></head><body>
+<div data-hf-id="hf-chb0" id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="10" data-fps="60">
+<section data-hf-id="hf-g16p" id="hook" class="clip" data-start="0" data-duration="1.5" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-wl4o" id="flow" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-19kq" class="centered tiny"><span data-hf-id="hf-0x9f" class="black" id="hooktype">$ █</span></div></section>
+<section data-hf-id="hf-x4m6" id="intro" class="clip" data-start="1.5" data-duration="2.783333333" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-jjqq" id="introflow" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-0va6" class="centered tiny"><span data-hf-id="hf-tefy" class="black" id="introtype"></span><canvas data-hf-id="hf-vq1e" id="insert" class="mini-field"></canvas><span data-hf-id="hf-xzwy" class="black" id="introend">terminal<span data-hf-id="hf-flu0" class="bar"></span></span></div></section>
+<section data-hf-id="hf-qfva" id="reveal" class="clip" data-start="4.283333333" data-duration="0.816666667" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-q8cl" id="revealfield" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-8xrk" class="centered"><span data-hf-id="hf-11q0" id="deltype" class="wordmark">Del</span></div></section>
+<div data-hf-id="hf-7q4c" id="ui" class="clip" data-composition-id="ui" data-composition-src="compositions/ui.html" data-start="5.1" data-duration="1.5" data-track-index="1" data-track-kind="graphics"></div>
+<section data-hf-id="hf-06ti" id="rust" class="clip" data-start="6.6" data-duration="1.05" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-y31i" id="rustfield" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-msp4" class="centered"><span data-hf-id="hf-qj82" id="rusttype" class="giant">Rust</span></div><div data-hf-id="hf-s7qt" id="gpui" class="small-note">+ GPUI</div></section>
+<section data-hf-id="hf-5xd7" id="engineer" class="clip" data-start="7.65" data-duration="1.5" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-fi2e" id="mux" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-19l7" class="centered tiny"><span data-hf-id="hf-xrzm" class="black" id="engineertype">for the engineer</span></div></section>
+<section data-hf-id="hf-16ed" id="end" class="clip" data-start="9.15" data-duration="0.85" data-track-index="1" data-track-kind="graphics"><canvas data-hf-id="hf-83j9" id="endfield" class="field" data-layout-allow-overflow></canvas><div data-hf-id="hf-402q" id="endline"></div><div data-hf-id="hf-lls1" class="centered"><span data-hf-id="hf-32ug" class="wordmark" id="endtype">Del</span></div><div data-hf-id="hf-mxb1" class="small-note" id="endtag"><span data-hf-id="hf-rek3" class="black">the native terminal multiplexer</span></div></section>
+<audio data-hf-id="hf-0h6h" id="master" src="assets/audio/mix.wav" data-start="0" data-duration="10" data-track-index="10" data-volume="1"></audio>
+</div><script>// Original lab modules render unchanged. The wrapper quantizes their time to 5/4 frame holds.
+LAB.FONT='"Geist Mono",monospace'; LAB.CODEX=[214,218,224]; LAB.CLAUDE=[214,218,224];
+const theme={bg:[11,12,14],fg:[214,218,224],ac:[244,246,248]};
+const get=(id)=>document.getElementById(id);
+const variants=Object.fromEntries(LAB.vars.map(v=>[v.name,v]));
+const renders=[];
+function shot(id,name,start,end,map,w=640){const c=get(id);c.width=w;c.height=w*9/16;const ctx=c.getContext('2d');const S={};const v=variants[name];renders.push({start,end,paint(t){if(v.frag)renderGL(v,ctx,c.width,c.height,map(t),v.seed,theme);else v.draw(ctx,c.width,c.height,map(t),v.seed,theme,S)}})}
+shot('flow','Bayer flow',0,1.5,t=>t*4);
+shot('introflow','Bayer flow',1.5,4.283333333,t=>t*.6+3);
+shot('insert','Mux split',1.5,4.283333333,t=>1.6+t*2,320);
+shot('revealfield','Atkinson gradient',4.283333333,5.1,t=>t+1);
+shot('rustfield','Halftone field',6.6,7.65,t=>t+2,960);
+shot('mux','Mux split',7.65,9.15,t=>1.6+t*3.4,1920);
+shot('endfield','Bayer flow',9.15,10,t=>t*.5+12);
+const framePose=(f)=>{const cycles=Math.floor(f/9),rest=f%9;return cycles*9+(rest>=5?5:0)};
+const updates=[];
+function text(id,s,at){updates.push({id,s,frame:Math.round(at*60)})}
+text('hooktype','$ █',0);text('hooktype','your terminal',.225);text('hooktype','fast█',.825);text('hooktype','your terminal',1.2);
+text('introtype','your',1.5);text('introtype','introducing',3.15);
+text('deltype','Del',4.283333333);
+text('rusttype','built with',6.6);text('rusttype','Rust',7.0);
+text('engineertype','for the engineer',7.65);text('engineertype','of tomorrow.',8.4);
+const base={};for(const u of updates)if(!(u.id in base))base[u.id]=get(u.id).textContent;
+function paint(t){const f=Math.min(599,Math.round(t*60+1e-5)),pf=framePose(f),q=pf/60;
+ for(const r of renders)if(t>=r.start&&t<r.end)r.paint(Math.max(0,q-r.start));
+ const state={...base};for(const u of updates)if(f>=u.frame)state[u.id]=u.s;for(const [id,s]of Object.entries(state))get(id).textContent=s;
+ get('introend').style.display=f>=189?'none':'inline';get('hooktype').style.fontSize=(f>=50&&f<72)?'400px':'30px';get('rusttype').style.fontSize=f<420?'76px':'400px';get('gpui').style.display=f>=441?'block':'none';
+ // Exponential stepped translations, never scaling, rotating or fading.
+ const local=Math.max(0,pf-257),k=Math.min(5,Math.floor(local/4.5));
+ get('deltype').style.transform=`translateX(${Math.round(-150*Math.pow(.35,k))}px)`;
+ get('endtype').style.transform=`translateY(${f>=590?-18:0}px)`;
+ get('endline').style.display=f>=590?'block':'none';
+}
+document.fonts.ready.then(()=>{const tl=gsap.timeline({paused:true});const d={_t:0};Object.defineProperty(d,'t',{get(){return this._t},set(v){this._t=v;paint(v)}});tl.fromTo(d,{t:0},{t:10,duration:10,ease:'none'},0);paint(0);window.__timelines['main']=tl});
+</script></body></html>

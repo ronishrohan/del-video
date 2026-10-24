@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Act 4 — Depth</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: transparent; }
+        #root .clip { position: absolute; inset: 0; }
+        .ui { background: #050506; }
+        .scrim { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; background: rgba(0,0,0,0.45); border-radius: 12px; }
+        .palpos { position: absolute; left: 420px; top: 110px; }
+        .wrd { display: none; }
+        .hw { border-radius: 3px; }
+        .hw.on { background: rgba(255,255,255,0.26); color: #fff; }
+        .send.ptrhost { position: relative; overflow: visible; }
+        .ptr { position: absolute; left: 50%; top: 50%; width: 19px; height: 19px; margin-left: -3.96px; margin-top: -2.375px; z-index: 10; overflow: visible; pointer-events: none; }
+        .send.pressed { box-shadow: 0 0 0 3px rgba(255,255,255,0.45); }
+      </style>
+
+      <div data-hf-id="hf-28rz" id="root" data-composition-id="act4" data-width="1920" data-height="1080" data-duration="50">
+        <div data-hf-id="hf-tan6" class="stage">
+          <!-- "Fast." one pixel, then the window snaps in; tabs strobe -->
+          <section data-hf-id="hf-hapm" class="shot clip ink" id="a4-px" data-hidden="true" data-start="0.000000000" data-duration="0.150000000"><canvas data-hf-id="hf-sf49" class="pix" id="a4-cpx"></canvas></section>
+          <section data-hf-id="hf-8u9m" class="shot clip ui" id="a4-fast" data-start="16.200000000" data-duration="2.700000000"><div data-hf-id="hf-5esv" class="cam" id="a4-cam1"><div data-hf-id="hf-yyr3" id="a4-w1"></div></div></section>
+          <!-- Search it. Find it. -->
+          <section data-hf-id="hf-u7uv" class="shot clip ui" id="a4-k" data-start="23.700000000" data-duration="0.900000000"><div data-hf-id="hf-ujb8" class="cam" id="a4-cam2"><div data-hf-id="hf-qav8" id="a4-w2"></div><div data-hf-id="hf-261e" class="scrim"></div><div data-hf-id="hf-11g0" class="palpos" id="a4-palpos"></div></div></section>
+          <!-- dive through old scrollback (abstract, dithered) -->
+          <section data-hf-id="hf-k3sd" class="shot clip ink" id="a4-dive" data-hidden="true" data-start="2.783333333" data-duration="0.450000000"><canvas data-hf-id="hf-fner" class="pix" id="a4-cdive"></canvas></section>
+          <!-- Jump to the line. -->
+          <section data-hf-id="hf-q6om" class="shot clip ui" id="a4-jump" data-start="24.600000000" data-duration="1.500000000"><div data-hf-id="hf-vaz1" class="cam" id="a4-cam3"><div data-hf-id="hf-r2j1" id="a4-w3"></div></div></section>
+          <!-- Smooth like butter. Every frame. -->
+          <section data-hf-id="hf-x2vv" class="shot clip ink" id="a4-butter" data-start="34.200000000" data-duration="3.300000000"><canvas data-hf-id="hf-cm1j" class="pix" id="a4-cbutter"></canvas></section>
+          <!-- cause and effect: type a prompt, click send, agents start streaming -->
+          <section data-hf-id="hf-t1p7" class="shot clip ui" id="a4-send" data-start="39.300000000" data-duration="6.000000000"><div data-hf-id="hf-e2oq" class="cam" id="a4-cam4"><div data-hf-id="hf-9u8q" id="a4-w4"></div></div></section>
+          <section data-hf-id="hf-ddqv" class="shot clip ui" id="a4-result" data-start="37.500000000" data-duration="1.800000000"><div data-hf-id="hf-i0sr" class="cam" id="a4-cam5"><div data-hf-id="hf-dscr" id="a4-w5"></div></div></section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, G = P.G, S = P.STEP, T = window.TYPE, D = window.DEL, H = P.hash;
+          const c = (id) => document.getElementById(id);
+          const cam = (tl, sel, cx, cy, s, at) => tl.set(sel, { x: 960 - cx * s, y: 540 - cy * s, scale: s }, at);
+          const pan = (tl, sel, a, b, s, at, n = 6, r = 0.5) => S.to(tl, sel, { x: 960 - a[0] * s, y: 540 - a[1] * s }, { x: 960 - b[0] * s, y: 540 - b[1] * s }, at, n, r);
+          const words = (el, text) => { el.innerHTML = ""; return text.split(/(?<= )/).map((w) => { const sp = document.createElement("span"); sp.className = "wrd"; sp.textContent = w; el.appendChild(sp); return sp; }); };
+          const S0 = D.DEFAULT_SESSIONS;
+          const sel = (i) => S0.map((s, k) => Object.assign({}, s, { sel: k === i }));
+
+          const LPX = P.layer(c("a4-cpx"), { w: 960, h: 540 }); LPX.draw = (t, ctx) => { ctx.fillStyle = "#fff"; ctx.fillRect(479, 269, 2, 2); };
+          // fast: window + strobe content
+          const strobeTabs = [{ p: "codex", t: "Fix the flaky upload retry" }, { p: "claude", t: "Check the retry test" }, { p: "acp", t: "Match this settings layout" }, { p: "codex", t: "Add a regression test" }, { p: "claude", t: "Draft the changelog" }, { t: "zsh · uploader" }];
+          const pages = [
+            `<div class="col"><div class="thread"><div class="umsg">Fix the flaky upload retry</div><div class="amsg"><p>Switched the retry to exponential backoff with jitter and added a test.</p></div>${D.diff({ id: "a4-d0" })}</div></div>`,
+            `<div style="position:absolute;inset:0">${D.terminal(["<span class='o'>✻</span> Claude Code  <span class='d'>~/dev/search-worker</span>", "", "<span class='o'>●</span> Update(src/cache.rs)  +31 −12", "  <span class='d'>⎿</span> peak RSS 198 MB"], { id: "a4-t1" })}</div>`,
+            `<div class="col"><div class="thread"><div class="umsg">Match this settings layout</div><div class="amsg"><p>Built four toggle rows from the screenshot. Running at localhost:5173.</p></div></div></div>`,
+            `<div class="col"><div class="thread"><div class="umsg">Add a regression test</div><div class="tool">${D.I("zap", 15, "var(--muted)")}Ran <b>cargo test upload</b><span class="ok">15 passed</span></div></div></div>`,
+            `<div class="col"><div class="thread"><div class="umsg">Draft the changelog</div><div class="amsg"><p>## 0.4.1 — retry backoff, cache offsets, settings toggles.</p></div></div></div>`,
+            `<div style="position:absolute;inset:0">${D.terminal(["<span class='d'>~/dev/uploader</span> ❯ git status --short", " M src/upload.rs", "?? tests/retry.rs", "<span class='d'>~/dev/uploader</span> ❯ <span class='caret' style='width:7px;height:14px;vertical-align:-2px'></span>"], { id: "a4-t5" })}</div>`,
+          ];
+          c("a4-w1").innerHTML = D.windowFrame(pages.map((pg, i) => `<div id="a4-pg${i}" style="position:absolute;inset:0;display:${i === 0 ? "block" : "none"}">${pg}</div>`).join(""), { id: "a4-win1", sessions: sel(0), tabs: strobeTabs.map((t, i) => Object.assign({}, t, { active: i === 0 })) });
+          // search
+          const rows = [
+            { p: "claude", title: "claude · uploader", kind: "Terminal", sel: true, html: "…retry with <mark>exponential backoff</mark> and <mark>jitter</mark>, max 5 attempts…" },
+            { p: "codex", title: "Fix the flaky upload retry", kind: "Chat", html: "I switched it to exponential <mark>backoff</mark> with <mark>jitter</mark> and added a test." },
+            { p: "claude", title: "Explain the queue reorder bug", kind: "Chat", html: "…the worker retries without <mark>backoff</mark>, so the queue…" },
+          ];
+          c("a4-w2").innerHTML = D.windowFrame(pages[0], { id: "a4-win2", sessions: sel(0), tabs: strobeTabs.slice(0, 4).map((t, i) => Object.assign({}, t, { active: i === 0 })) });
+          c("a4-palpos").innerHTML = D.palette({ id: "a4-pal", rows });
+          const LDV = P.layer(c("a4-cdive"), { w: 960, h: 540 });
+          LDV.draw = (t, ctx) => {
+            const camZ = Math.min(6.0, S.index(t) * 1.2);
+            ctx.textBaseline = "top";
+            for (let p = 9; p >= 0; p--) { const z = p + 1.2 - camZ; if (z <= 0.15) continue; const s = 1 / z, a = P.clamp(1.4 - z * 0.14); const ox = 480 + (H(p, 1, 51) - 0.5) * 300 * s, oy = 300 + (H(p, 2, 51) - 0.5) * 160 * s; ctx.font = `${Math.max(2, 22 * s)}px "Geist Mono", monospace`; for (let r = 0; r < 14; r++) { const hit = p === 5 && r === 6; const g = Math.round((hit ? 255 : 150 + 80 * H(p, r, 52)) * a); ctx.fillStyle = `rgb(${g},${g},${g})`; ctx.fillText(hit ? "  ⎿ retry with exponential backoff and jitter" : P.lineAt(500 + p, r), ox - 400 * s, oy + (r - 7) * 30 * s); } }
+          };
+          // jump to the line: crisp terminal, highlight steps word by word
+          const jl = ["<span class='d'>  Compiling uploader v0.4.0</span>", "<span class='d'>  12 tests passed</span>", "", "<span class='o'>✻</span> Claude Code  <span class='d'>~/dev/uploader · resumed</span>", "", "<span class='d'>&gt;</span> Why does the upload retry flake on CI?", "<span class='o'>●</span> Read(src/upload.rs)", "<span class='o'>●</span> The loop sleeps a fixed 500 ms before each retry.", "<span class='o'>●</span> Suggested fix:", `  <span class='d'>⎿</span> <span id="a4-hit"></span>`, "  <span class='d'>⎿</span> max 5 attempts, base 200 ms", "", "<span class='d'>&gt;</span> <span class='caret' style='width:8px;height:15px;vertical-align:-2px'></span>"];
+          c("a4-w3").innerHTML = D.windowFrame(`<div style="position:absolute;inset:0;background:rgba(0,0,0,0.18)">${D.terminal(jl, { id: "a4-t3", style: "font-size:13px" })}</div>`, { id: "a4-win3", sessions: sel(-1), tabs: [{ p: "codex", t: "Fix the flaky upload retry" }, { p: "claude", t: "claude · uploader", active: true }] });
+          const hitWords = "retry with exponential backoff and jitter".split(" ");
+          c("a4-hit").innerHTML = hitWords.map((w, i) => `<span class="hw" id="a4-hw${i}">${w}</span>`).join(" ");
+          // butter: stepped glide across the pane field, hard cut to the ribbon on "Every frame"
+          const LB = P.layer(c("a4-cbutter"), { w: 960, h: 540 });
+          LB.draw = (t, ctx, L) => {
+            if (t < 2.22) {
+              const u = S.at(t, 16, 0.82), camX = u * 1500, camY = u * 260, pw = 240, ph = 150;
+              for (let gy = -1; gy < 6; gy++) for (let gx = -1; gx < 8; gx++) { const x = gx * pw - (camX % pw), y = gy * ph - (camY % ph); const id = (gx + Math.floor(camX / pw)) * 7 + (gy + Math.floor(camY / ph)) * 13; ctx.fillStyle = "rgb(36,36,36)"; ctx.fillRect(x + 1, y + 1, pw - 2, 11); G.stream(ctx, L, t + id, { x: x + 1, y: y + 12, w: pw - 2, h: ph - 14 }, { size: 8, seed: 400 + (id & 63), speed: 3, cursor: false, bright: 190 }); ctx.fillStyle = "rgb(150,150,150)"; ctx.fillRect(x + pw - 1, y, 1, ph); ctx.fillRect(x, y + ph - 1, pw, 1); }
+              return;
+            }
+            const img = ctx.getImageData(0, 0, 960, 540), d = img.data;
+            for (let x = 0; x < 960; x++) { const cy = 270 + 110 * Math.sin(x * 0.006 + t * 1.3) + 40 * Math.sin(x * 0.017 - t * 0.9), wd = 70 + 30 * Math.sin(x * 0.004 + t); for (let y = 0; y < 540; y++) { const dd = (y - cy) / wd, i = (y * 960 + x) * 4; d[i] = d[i + 1] = d[i + 2] = Math.exp(-dd * dd) * 255; } }
+            ctx.putImageData(img, 0, 0);
+          };
+          // send: new-session composer with the pointer pinned to the send button
+          c("a4-w4").innerHTML = D.windowFrame(`<div class="col" style="justify-content:center;padding-bottom:40px"><div class="heading">What are we building?</div>${D.composer({ id: "a4-c4", provider: "codex", folder: "~/dev/uploader", placeholder: "" })}</div>`, { id: "a4-win4", sessions: sel(-1), tabs: [{ p: "codex", t: "Fix the flaky upload retry" }, { t: "New session", active: true }] });
+          const hiddenComposer = c("a4-w4").innerHTML;
+          c("a4-w4").innerHTML = D.windowFrame(`<div style="position:absolute;inset:0">${D.terminal([
+            "<span class='d'>~/dev/uploader</span> ❯ <span id='a4-shell-typed'></span><span class='caret' style='width:8px;height:15px;vertical-align:-2px'></span>",
+            "", "<span id='a4-shell-log1' style='display:none'>   Running tests/retry.rs</span>",
+            "<span id='a4-shell-log2' style='display:none'>test retry::backoff ... FAILED</span>",
+            "<span id='a4-shell-log3' style='display:none'>assertion failed: delay &gt;= expected_backoff</span>",
+            "<span id='a4-shell-log4' style='display:none'>  src/retry.rs:87</span>"
+          ], {id:"a4-final-shell",style:"font-size:19px"})}</div>`, {id:"a4-shell-window",sessions:sel(-1),tabs:[{p:"claude",t:"Check the retry test"},{t:"zsh · uploader",active:true}]}) + `<div style="display:none">${hiddenComposer}</div>`;
+          const send = c("a4-c4-send");
+          send.classList.add("ptrhost");
+          send.insertAdjacentHTML("beforeend", `<svg class="ptr" id="a4-ptr" viewBox="0 0 24 24"><path d="M5 3l14 9-6 1.5L16 20l-3 1-3-6.5L5 18z" fill="#f4f6f8" stroke="#0b0b0d" stroke-width="1.6" stroke-linejoin="round"/></svg>`);
+          // result: the new session is live — agent replying, terminal running
+          const prompt = "Run the full test suite and fix anything that fails";
+          const resultThread = `<div class="umsg">${prompt}</div><div class="reason"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;border-right-color:transparent;display:inline-block"></span>Working…</div><div class="amsg"><p id="a4-r-p"></p></div><div class="tool" id="a4-r-tool">${D.I("zap", 15, "var(--muted)")}Running <b>cargo test --workspace</b></div>`;
+          c("a4-w5").innerHTML = D.windowFrame(`<div class="col" style="width:560px;margin-left:-280px"><div class="thread">${resultThread}</div></div>`, { id: "a4-win5", sessions: [{ p: "codex", t: prompt, sel: true }].concat(S0.slice(0, 6)), tabs: [{ p: "codex", t: "Fix the flaky upload retry" }, { p: "codex", t: prompt, active: true }], right: D.rightPanel({ id: "a4-rp5", tab: "terminal" }) });
+          const rW = words(c("a4-r-p"), "Running the whole workspace first. 213 of 214 pass; queue::reorder is flaky, so I'm reading src/queue.rs and will patch the ordering.");
+
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            P.drive(tl, [{ start: 0, dur: 0.15, layer: LPX }, { start: 2.5, dur: 0.42, layer: LDV }, { start: 4.35, dur: 3.15, layer: LB }], 11.925, 27.75);
+            // fast: full window, then tab strobe (one pose per 4-5 frames)
+            cam(tl, "#a4-cam1", 720, 450, 1.33, 0.15);
+            tl.set("#a4-win1-tabs-1", {className:"tab active"}, .39);
+            tl.set("#a4-win1-tabs-0", {className:"tab"}, .39);
+            pages.forEach((_,j)=>tl.set(`#a4-pg${j}`,{display:j===1?"block":"none"},.39));
+            tl.set("#a4-win1-tabs-1", {className:"tab"}, .64);
+            tl.set("#a4-win1-tabs-5", {className:"tab active"}, .64);
+            pages.forEach((_,j)=>tl.set(`#a4-pg${j}`,{display:j===5?"block":"none"},.64));
+            // search
+            cam(tl, "#a4-cam2", 720, 300, 1.75, 1.0);
+            tl.set(["#a4-pal-r0", "#a4-pal-r1", "#a4-pal-r2"], { opacity: 0 }, 1.0);
+            tl.set("#a4-pal-ph", { display: "none" }, 1.12);
+            const q = T.prepare(c("a4-pal-typed"), "backoff jitter");
+            S.type(tl, q, 1.15, 5, 0.6);
+            T.blink(tl, "#a4-pal-caret", 1.0, 2.5, 0.4);
+            tl.set(["#a4-pal-r0", "#a4-pal-r1", "#a4-pal-r2"], { opacity: 1 }, 2.06);
+            // jump to the line
+            cam(tl, "#a4-cam3", 560, 270, 2.3, 2.92);
+            hitWords.forEach((w, i) => tl.set(`#a4-hw${i}`, { className: "hw" }, 2.92));
+            { let t = 2.99; for (let k = 1; k <= 4; k++) { const n = Math.round(hitWords.length * S.prog(k, 4, 0.55)); for (let i = 0; i < n; i++) tl.set(`#a4-hw${i}`, { className: "hw on" }, t); t += S.hold(k); } }
+            pan(tl, "#a4-cam3", [560, 270], [600, 262], 2.3, 3.4, 5, 0.5);
+            // send demo: type the prompt in stepped chunks, pointer steps in, click, result
+            cam(tl, "#a4-cam4", 660, 270, 1.65, 7.5);
+            tl.set("#a4-c4-ph", { display: "none" }, 7.5);
+            const typed = c("a4-c4-typed");
+            tl.set(typed, { textContent: "" }, 7.5);
+            const tEnd = S.typeText(tl, typed, prompt, 7.6, 9, 0.75);
+            tl.set("#a4-c4-send", { className: "send ptrhost on" }, 7.65);
+            tl.set("#a4-ptr", { x: 260, y: 140 }, 7.5);
+            const ptrDone = S.to(tl, "#a4-ptr", { x: 260, y: 140 }, { x: 0, y: 0 }, Math.max(tEnd + 0.05, 8.85), 6, 0.45);
+            const clickAt = Math.max(ptrDone + 0.1, 9.4);
+            tl.set("#a4-c4-send", { className: "send ptrhost on pressed" }, clickAt);
+            T.blink(tl, "#a4-c4-caret", 7.5, 9.6, 0.4);
+            window.__CLICK_AT_ACT4 = clickAt;
+            // result: instant cut 4 frames after the click (section starts at 8.82)
+            cam(tl, "#a4-cam5", 880, 290, 1.9, 9.6);
+            S.type(tl, rW, 9.6, 14, 0.85);
+            for (let i = 0; i < 10; i++) tl.set(`#a4-rp5-term-l${i}`, { opacity: 0 }, 9.525);
+            { let t = 9.6; for (let k = 1; k <= 8; k++) { const n = Math.round(10 * S.prog(k, 8, 0.7)); for (let i = 0; i < n; i++) tl.set(`#a4-rp5-term-l${i}`, { opacity: 1 }, t); t += S.hold(k); } }
+            P.STEP.snap(tl, 27.75);
+            const snap = P.TIMING.snap;
+            S.typeText(tl,c("a4-shell-typed"),"cargo test retry::backoff",snap(39.52),7,.7);
+            for(let j=1;j<=4;j++)tl.set(`#a4-shell-log${j}`,{display:"inline"},snap(41.1+(j-1)*.45));
+            window.__timelines["act4"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

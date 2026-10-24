@@ -1,0 +1,37 @@
+{
+  "before": 18071,
+  "project_baseline": 16623,
+  "batch_cap": 1500,
+  "after_first_two": {
+    "tier": "payg",
+    "character_count": 18071,
+    "character_limit": 64945,
+    "status": "active"
+  },
+  "generations": [
+    {
+      "name": "01-curious-piano",
+      "bytes": 240812,
+      "cost_headers": {},
+      "requested_ms": 10000
+    },
+    {
+      "name": "02-analog-discovery",
+      "bytes": 286892,
+      "cost_headers": {},
+      "requested_ms": 10000
+    },
+    {
+      "name": "03-piano-synth-invention",
+      "bytes": 240812,
+      "cost_headers": {},
+      "requested_ms": 10000
+    }
+  ],
+  "after_immediate": {
+    "tier": "payg",
+    "character_count": 18071,
+    "character_limit": 64945,
+    "status": "active"
+  }
+}

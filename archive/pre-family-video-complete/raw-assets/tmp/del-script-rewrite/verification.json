@@ -1,0 +1,22 @@
+{
+  "output": "/Users/ronish/.ao/data/artifacts/del-video-6/script-rewrite/del-jessica-natural-preview.mp3",
+  "decoded_samples": 2400000,
+  "decoded_duration": 50.0,
+  "source_voice_duration": 27.44,
+  "added_silence": 12.6,
+  "voice_start": 1.2,
+  "speech_span_end": 41.35,
+  "voice_rate": 1.0,
+  "final": {
+    "input_i": "-16.35",
+    "input_tp": "-1.79",
+    "input_lra": "6.40",
+    "input_thresh": "-27.44",
+    "output_i": "-16.57",
+    "output_tp": "-1.80",
+    "output_lra": "6.10",
+    "output_thresh": "-27.29",
+    "normalization_type": "dynamic",
+    "target_offset": "0.57"
+  }
+}

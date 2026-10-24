@@ -1,0 +1,122 @@
+[
+  {
+    "frame": 720,
+    "kind": "felt",
+    "gain": 0.0035
+  },
+  {
+    "frame": 1017,
+    "kind": "tab",
+    "gain": 0.004
+  },
+  {
+    "frame": 1067,
+    "kind": "tab",
+    "gain": 0.004
+  },
+  {
+    "frame": 1143,
+    "kind": "key",
+    "gain": 0.002
+  },
+  {
+    "frame": 1152,
+    "kind": "key",
+    "gain": 0.002
+  },
+  {
+    "frame": 1161,
+    "kind": "key",
+    "gain": 0.002
+  },
+  {
+    "frame": 1170,
+    "kind": "key",
+    "gain": 0.002
+  },
+  {
+    "frame": 1220,
+    "kind": "queue",
+    "gain": 0.006
+  },
+  {
+    "frame": 1481,
+    "kind": "search",
+    "gain": 0.0025
+  },
+  {
+    "frame": 1485,
+    "kind": "search",
+    "gain": 0.0025
+  },
+  {
+    "frame": 1490,
+    "kind": "search",
+    "gain": 0.0025
+  },
+  {
+    "frame": 1494,
+    "kind": "search",
+    "gain": 0.0025
+  },
+  {
+    "frame": 2372,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2376,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2381,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2385,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2390,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2394,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2399,
+    "kind": "key",
+    "gain": 0.0022
+  },
+  {
+    "frame": 2466,
+    "kind": "terminal",
+    "gain": 0.002
+  },
+  {
+    "frame": 2493,
+    "kind": "terminal",
+    "gain": 0.002
+  },
+  {
+    "frame": 2520,
+    "kind": "terminal",
+    "gain": 0.002
+  },
+  {
+    "frame": 2547,
+    "kind": "terminal",
+    "gain": 0.002
+  },
+  {
+    "frame": 2826,
+    "kind": "felt",
+    "gain": 0.0035
+  }
+]

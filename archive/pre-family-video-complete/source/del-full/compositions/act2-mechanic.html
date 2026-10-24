@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><title>Act 2 — Mechanic</title></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0b0b0d; }
+        #root .clip { position: absolute; inset: 0; }
+        .bigc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        .ui { background: #050506; }
+        .wrd { display: none; }
+      </style>
+
+      <div data-hf-id="hf-82is" id="root" data-composition-id="act2" data-width="1920" data-height="1080" data-duration="14.550000000">
+        <div data-hf-id="hf-tan6" class="stage">
+          <!-- "Every agent." dithered wall of agent streams -->
+          <section data-hf-id="hf-pzpt" class="shot clip ink" id="a2-agent" data-start="0.000000000" data-duration="1.500000000"><canvas data-hf-id="hf-tkly" class="pix" id="a2-cagent"></canvas></section>
+          <!-- "Every shell." dithered field of shell prompts -->
+          <section data-hf-id="hf-s8ac" class="shot clip ink" id="a2-shell" data-start="1.500000000" data-duration="1.133333333"><canvas data-hf-id="hf-qs8f" class="pix" id="a2-cshell"></canvas></section>
+          <!-- "One window." hard cut to the real window, crisp -->
+          <section data-hf-id="hf-51dd" class="shot clip ui" id="a2-win" data-start="2.633333333" data-duration="1.416666667"><div data-hf-id="hf-tljh" class="cam" id="a2-cam1"><div data-hf-id="hf-67yp" id="a2-w1"></div></div></section>
+          <!-- "Codex. Claude Code." -->
+          <section data-hf-id="hf-xaxa" class="shot clip ink" id="a2-names" data-start="4.050000000" data-duration="2.333333333"><div data-hf-id="hf-8l45" class="bigc"><span data-hf-id="hf-2utq" class="giantm" style="font-size:330px"><span data-hf-id="hf-i9y3" id="a2-g"></span><span data-hf-id="hf-sqls" class="blockcur" id="a2-gc"></span></span></div></section>
+          <!-- "Any agent you install." sidebar + tabs fill in -->
+          <section data-hf-id="hf-sole" class="shot clip ui" id="a2-agents" data-start="6.383333333" data-duration="1.650000000"><div data-hf-id="hf-xjni" class="cam" id="a2-cam2"><div data-hf-id="hf-cdoi" id="a2-w2"></div></div></section>
+          <!-- "Chat," -->
+          <section data-hf-id="hf-rslg" class="shot clip ui" id="a2-chat" data-start="8.033333333" data-duration="1.050000000"><div data-hf-id="hf-3pdb" class="cam" id="a2-cam3"><div data-hf-id="hf-gbsj" id="a2-w3"></div></div></section>
+          <!-- "or the raw terminal." -->
+          <section data-hf-id="hf-tjlr" class="shot clip ui" id="a2-term" data-start="9.083333333" data-duration="1.416666667"><div data-hf-id="hf-7nhc" class="cam" id="a2-cam4"><div data-hf-id="hf-sub0" id="a2-w4"></div></div></section>
+          <!-- "Queue the next task while one runs." -->
+          <section data-hf-id="hf-82bm" class="shot clip ui" id="a2-queue" data-start="10.500000000" data-duration="3.150000000"><div data-hf-id="hf-8f55" class="cam" id="a2-cam5"><div data-hf-id="hf-tlyt" id="a2-w5"></div></div></section>
+          <!-- instrumental: subdivision -->
+          <section data-hf-id="hf-ayb9" class="shot clip ink" id="a2-cas" data-start="13.650000000" data-duration="0.900000000"><canvas data-hf-id="hf-lwcu" class="pix" id="a2-ccas"></canvas></section>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const P = window.PROC, G = P.G, S = P.STEP, T = window.TYPE, D = window.DEL, H = P.hash;
+          const c = (id) => document.getElementById(id);
+          const cam = (tl, sel, cx, cy, s, at) => tl.set(sel, { x: 960 - cx * s, y: 540 - cy * s, scale: s }, at);
+          const pan = (tl, sel, a, b, s, at, n = 6, r = 0.5) => S.to(tl, sel, { x: 960 - a[0] * s, y: 540 - a[1] * s }, { x: 960 - b[0] * s, y: 540 - b[1] * s }, at, n, r);
+          const words = (el, text) => { el.innerHTML = ""; return text.split(/(?<= )/).map((w) => { const sp = document.createElement("span"); sp.className = "wrd"; sp.textContent = w; el.appendChild(sp); return sp; }); };
+          const reveal = (tl, spans, at, n, r = 0.7) => S.type(tl, spans, at, n, r);
+
+          // dithered layers
+          const wall = []; for (let r = 0; r < 4; r++) for (let q = 0; q < 6; q++) wall.push({ x: q * 160, y: r * 135, w: 160, h: 135, born: -1, id: r * 6 + q });
+          const order = wall.map((p, i) => [Math.hypot(p.x + 80 - 480, p.y + 67 - 270), i]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
+          const LA = P.layer(c("a2-cagent"), { w: 960, h: 540 });
+          LA.draw = (t, ctx, L) => { if (t < 0.034) { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, 960, 540); return; } const n = Math.round(24 * S.at(t - 0.034, 5, 0.45)); G.drawPanes(ctx, L, t + 9, order.slice(0, Math.max(1, n)).map((i) => wall[i]), { size: 7, provs: ["codex", "claude", "zsh", "acp", "zsh", "claude"] }); };
+          const LS = P.layer(c("a2-cshell"), { w: 960, h: 540 });
+          LS.draw = (t, ctx) => { ctx.font = '18px "Geist Mono", monospace'; ctx.textBaseline = "top"; for (let r = 0; r < 22; r++) for (let q = 0; q < 4; q++) { const g = Math.round(120 + 120 * H(r, q + Math.floor(t * 12), 3)); ctx.fillStyle = `rgb(${g},${g},${g})`; ctx.fillText(["$ ", "% ", "❯ ", "# "][q] + ["ls", "git pull", "cargo run", "ssh edge-2", "make", "top", "zsh"][(r + q) % 7], 20 + q * 240, r * 25); } };
+          const LC = P.layer(c("a2-ccas"), { w: 960, h: 540 });
+          const splits = [];
+          (function () { let rects = [{ x: 0, y: 0, w: 960, h: 540 }]; for (let k = 0; k < 10; k++) { let idx = 0; rects.forEach((r, i) => { if (r.w * r.h > rects[idx].w * rects[idx].h) idx = i; }); const r = rects[idx], dir = r.w / r.h > 1.25 ? "v" : "h", pos = 0.4 + H(k, 1, 77) * 0.2; splits.push({ at: 0.075 * (k + 1), dir, idx, pos }); const a = dir === "v" ? { x: r.x, y: r.y, w: r.w * pos, h: r.h } : { x: r.x, y: r.y, w: r.w, h: r.h * pos }; const b = dir === "v" ? { x: r.x + r.w * pos, y: r.y, w: r.w * (1 - pos), h: r.h } : { x: r.x, y: r.y + r.h * pos, w: r.w, h: r.h * (1 - pos) }; rects.splice(idx, 1, a, b); } })();
+          LC.draw = (t, ctx, L) => { const rects = G.panes(L, t, splits, { x: 0, y: 0, w: 960, h: 540 }); G.drawPanes(ctx, L, t + 20, rects, { size: rects.length > 8 ? 8 : 11, provs: ["claude", "codex", "zsh", "acp", "zsh"] }); };
+
+          // crisp UI screens
+          const S0 = D.DEFAULT_SESSIONS;
+          const chatPage = (id, body, comp) => `<div class="col" style="justify-content:center"><div class="thread" id="${id}-th" style="flex:none">${body}</div><div style="padding:0 0 16px">${comp}</div></div>`;
+          const reply = `<div class="umsg">Profile the search worker and cut its memory in half</div><div class="reason">Thought for 3s</div><div class="amsg"><p>The cache stores full documents. Storing offsets is enough, so I switched it and re-ran the benchmark.</p></div><div class="tool">${D.I("zap", 15, "var(--muted)")}Ran <b>cargo bench --bench cache</b><span class="ok">−48%</span></div>`;
+          c("a2-w1").innerHTML = D.windowFrame(chatPage("a2-1", reply, D.composer({ id: "a2-c1", provider: "claude", placeholder: "Ask for follow-up changes", folder: "~/dev/search-worker" })), { id: "a2-win1", sessions: S0.map((s, k) => Object.assign({}, s, { sel: k === 1 })), tabs: [{ p: "codex", t: "Fix the flaky upload retry" }, { p: "claude", t: "Profile the search worker", active: true }, { p: "acp", t: "Match this settings layout" }], right: D.rightPanel({ id: "a2-rp1", tab: "terminal" }) });
+          // sidebar/tabs filling in
+          const many = [
+            { p: "codex", t: "Fix the flaky upload retry" }, { p: "claude", t: "Profile the search worker" }, { p: "acp", t: "Match this settings layout" }, { p: "codex", t: "Add a regression test" },
+            { p: "claude", t: "Explain the queue reorder" }, { p: "acp", t: "Summarise the RFC" }, { p: "codex", t: "Bump the tokio pin" }, { p: "claude", t: "Draft the changelog" },
+          ];
+          c("a2-w2").innerHTML = D.windowFrame(`<div></div>`, { id: "a2-win2", sessions: many, tabs: many.slice(0, 6).map((m, i) => Object.assign({}, m, { active: i === 0 })) });
+          // chat vs terminal (same session)
+          c("a2-w3").innerHTML = D.windowFrame(chatPage("a2-3", reply, D.composer({ id: "a2-c3", provider: "claude", placeholder: "Ask for follow-up changes", folder: "~/dev/search-worker", mode: "chat" })), { id: "a2-win3", sessions: S0.map((s, k) => Object.assign({}, s, { sel: k === 1 })) });
+          const tlines = [
+            `<span class="o">✻</span> Claude Code  <span class="d">~/dev/search-worker</span>`, ``,
+            `<span class="d">&gt;</span> Profile the search worker and cut its memory in half`, ``,
+            `<span class="o">●</span> Read(src/index.rs)`, `<span class="o">●</span> Bash(cargo bench --bench cache)`,
+            `  <span class="d">⎿</span> cache/insert   time: [212 µs]  peak RSS 412 MB`,
+            `<span class="o">●</span> The cache stores full documents; offsets are enough.`,
+            `<span class="o">●</span> Update(src/cache.rs)  +31 −12`, `<span class="o">●</span> Bash(cargo bench --bench cache)`,
+            `  <span class="d">⎿</span> cache/insert   −48.2%  peak RSS 198 MB`, ``, `<span class="d">&gt;</span> <span class="caret" style="width:8px;height:15px;vertical-align:-2px"></span>`,
+          ];
+          c("a2-w4").innerHTML = D.windowFrame(`<div style="position:absolute;inset:0;background:rgba(0,0,0,0.18)">${D.terminal(tlines, { id: "a2-t4", style: "font-size:13px" })}</div>`, { id: "a2-win4", sessions: S0.map((s, k) => Object.assign({}, s, { sel: k === 1 })), tabs: [{ p: "codex", t: "Fix the flaky upload retry" }, { p: "claude", t: "Profile the search worker", active: true }] });
+          // queue while a reply runs
+          const qrows = ["Add a regression test for the cache", "Update the README benchmarks", "Run clippy and fix warnings"];
+          const qBody = `<div class="umsg">Profile the search worker and cut its memory in half</div><div class="reason"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;border-right-color:transparent;display:inline-block"></span>Working…</div><div class="amsg"><p id="a2-q-run"></p></div>`;
+          c("a2-w5").innerHTML = D.windowFrame(`<div class="col" style="justify-content:center"><div class="thread" style="flex:none">${qBody}</div><div style="padding:0 0 16px">${D.queue(qrows, { id: "a2-q" })}${D.composer({ id: "a2-c5", provider: "claude", folder: "~/dev/search-worker", placeholder: "" })}</div></div>`, { id: "a2-win5", sessions: S0.map((s, k) => Object.assign({}, s, { sel: k === 1 })) });
+
+          const runW = words(c("a2-q-run"), "Reading src/cache.rs and the benchmark history. The insert path copies each document twice, which explains most of the peak.");
+          const qText = qrows.map((q) => q);
+          document.fonts.ready.then(() => {
+            const tl = gsap.timeline({ paused: true });
+            P.drive(tl, [{ start: 0, dur: 1.49, layer: LA }, { start: 1.49, dur: 1.14, layer: LS }, { start: 12.6, dur: 0.9, layer: LC }], 13.5, 5.25);
+            // one window: full frame, then a stepped push toward the conversation
+            cam(tl, "#a2-cam1", 720, 450, 1.33, 2.63);
+            // names
+            const g = c("a2-g");
+            tl.set(g, { textContent: "" }, 0);
+            S.typeText(tl, g, "codex", 3.75, 3);
+            S.typeText(tl, g, "claude", 4.7, 3);
+            T.blink(tl, "#a2-gc", 3.6, 5.95, 0.3);
+            // any agent you install: sidebar rows and tabs appear in exponential steps
+            cam(tl, "#a2-cam2", 375, 215, 2.6, 5.95);
+            const nRows = many.length;
+            for (let i = 0; i < nRows; i++) tl.set(`#a2-win2-sb-s${i}`, { opacity: 0 }, 5.95);
+            for (let i = 0; i < 6; i++) tl.set(`#a2-win2-tabs-${i}`, { opacity: 0 }, 5.95);
+            let tt = 6.01;
+            for (let k = 1; k <= 5; k++) { const shown = Math.round(nRows * S.prog(k, 5, 0.6)); for (let i = 0; i < shown; i++) tl.set(`#a2-win2-sb-s${i}`, { opacity: 1 }, tt); const tabs = Math.round(6 * S.prog(k, 5, 0.6)); for (let i = 0; i < tabs; i++) tl.set(`#a2-win2-tabs-${i}`, { opacity: 1 }, tt); tt += S.hold(k) * 3; }
+            pan(tl, "#a2-cam2", [375, 215], [400, 240], 2.6, 6.9, 5, 0.5);
+            // chat, then the toggle snaps to terminal and the view cuts
+            cam(tl, "#a2-cam3", 825, 450, 2.3, 7.6);
+            tl.set("#a2-c3-pill", { left: 48, width: 70 }, 8.6);
+            tl.set("#a2-c3-mchat", { className: "" }, 8.6);
+            tl.set("#a2-c3-mterm", { className: "on" }, 8.6);
+            cam(tl, "#a2-cam4", 560, 200, 2.4, 8.66);
+            for (let i = 0; i < tlines.length; i++) tl.set(`#a2-t4-l${i}`, { opacity: 0 }, 8.66);
+            { let t = 8.66; for (let k = 1; k <= 7; k++) { const n = Math.round(tlines.length * S.prog(k, 7, 0.65)); for (let i = 0; i < n; i++) tl.set(`#a2-t4-l${i}`, { opacity: 1 }, t); t += S.hold(k); } }
+            // queue while one runs
+            cam(tl, "#a2-cam5", 825, 500, 2.3, 10.02);
+            for (let i = 0; i < 3; i++) tl.set(`#a2-q-r${i}`, { display: "none" }, 10.02);
+            reveal(tl, runW, 10.07, 18, 1);
+            const typed = c("a2-c5-typed");
+            let at = 10.12;
+            qText.forEach((q, i) => {
+              tl.set(typed, { textContent: "" }, at);
+              at = S.typeText(tl, typed, q, at, 4, 0.7);
+              at += 0.08;
+              tl.set(typed, { textContent: "" }, at);
+              tl.set(`#a2-q-r${i}`, { display: "flex" }, at);
+              at += 0.12;
+            });
+            T.blink(tl, "#a2-c5-caret", 10.02, 12.6, 0.4);
+            P.STEP.snap(tl, 5.25);
+            window.__timelines["act2"] = tl;
+          });
+        })();
+      </script>
+    </template>
+  </body>
+</html>
